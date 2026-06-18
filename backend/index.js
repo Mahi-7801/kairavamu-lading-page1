@@ -340,6 +340,11 @@ app.post('/api/generate-transformation', async (req, res) => {
   }
 });
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Kairavam API server running on http://localhost:${PORT}`);
-});
+
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, () => {
+    console.log(`Kairavam API server running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;
