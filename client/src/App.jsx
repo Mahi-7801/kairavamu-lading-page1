@@ -125,6 +125,9 @@ function App() {
   const [quizResult, setQuizResult] = useState(null)
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [loadingText, setLoadingText] = useState('Initializing skin diagnostics...')
+  const [activeTreatmentSlide, setActiveTreatmentSlide] = useState(0)
+  const [isCarouselHovered, setIsCarouselHovered] = useState(false)
+  const [isPageScrolling, setIsPageScrolling] = useState(false)
   const [quizLang, setQuizLang] = useState('en') // 'en' or 'te'
   const [quizCustomInput, setQuizCustomInput] = useState('') // free-text concern input
   const [quizImageBase64, setQuizImageBase64] = useState(null)
@@ -156,6 +159,7 @@ function App() {
   const bookingFormRef = useRef(null)
   const quizRef = useRef(null)
   const treatmentsRef = useRef(null)
+  const doctorRef = useRef(null)
   const sliderRef = useRef(null)
   const reviewsScrollRef = useRef(null)
 
@@ -488,13 +492,13 @@ function App() {
       title: 'Pico Hollywood Carbon Laser',
       category: 'Skin Laser & Glow',
       badge: 'Most Advanced',
-      desc: 'Achieve instant glow, deep cleansing and brighter skin with advanced carbon laser technology.',
+      desc: 'A popular laser skin treatment that deeply cleanses pores, controls excess oil, improves skin texture, and enhances overall skin brightness. Ideal for individuals looking for refreshed, clearer, and healthier-looking skin.',
       bullets: [
-        'Deep Cleansing & Oil Control',
-        'Instant Glow & Skin Brightening',
-        'Reduces Open Pores',
-        'Improves Skin Texture',
-        'Stimulates Collagen Production'
+        'Deep pore cleansing',
+        'Reduced oiliness',
+        'Brighter complexion',
+        'Refined pores',
+        'Improved skin texture'
       ],
       price: '₹3,000',
       range: '₹3,000 - ₹7,000 / Session',
@@ -506,13 +510,12 @@ function App() {
       title: 'Skin Resurfacing Treatment',
       category: 'Scar & Texture',
       badge: 'Dermal Renewal',
-      desc: 'Advanced laser resurfacing helps improve damaged skin and promotes smoother texture.',
+      desc: 'Designed to improve rough skin texture, acne marks, fine lines, and early signs of ageing by encouraging healthy skin renewal and collagen support.',
       bullets: [
-        'Reduces Fine Lines',
-        'Improves Skin Texture',
-        'Enhances Skin Tone',
-        'Stimulates New Collagen',
-        'Younger Looking Skin'
+        'Smoother skin texture',
+        'Improved skin tone',
+        'Enhanced skin renewal',
+        'Refreshed appearance'
       ],
       price: '₹6,000',
       range: '₹6,000 - ₹9,000',
@@ -523,13 +526,13 @@ function App() {
       title: 'Acne Scar Treatment',
       category: 'Scar & Texture',
       badge: 'Texture Revision',
-      desc: 'Advanced laser treatments designed to reduce acne scars and improve skin smoothness.',
-      bullets: [
-        'Reduces Acne Scars',
-        'Smoothens Skin Surface',
-        'Improves Texture',
-        'Boosts Confidence',
-        'Long-Term Results'
+      desc: 'Personalized acne scar treatments designed to improve skin texture, reduce visible scarring, and support collagen production for healthier-looking skin.',
+      suitableFor: [
+        'Acne scars',
+        'Post-acne marks',
+        'Boxcar scars',
+        'Rolling scars',
+        'Uneven skin texture'
       ],
       price: '₹5,500',
       range: '₹5,500 - ₹8,500',
@@ -540,13 +543,12 @@ function App() {
       title: 'Pigmentation Treatment',
       category: 'Pigmentation & Glow',
       badge: 'Tone Correction',
-      desc: 'Target unwanted pigmentation, tanning and uneven skin tone effectively.',
+      desc: 'Customized solutions for melasma, sunspots, tanning, and uneven skin tone designed to improve skin clarity and create a more balanced complexion.',
       bullets: [
-        'Reduces Pigmentation',
-        'Even Skin Tone',
-        'Brighter Complexion',
-        'Improves Skin Clarity',
-        'Safe & Effective Results'
+        'Reduced discoloration',
+        'More even skin tone',
+        'Enhanced skin brightness',
+        'Improved skin clarity'
       ],
       price: '₹3,000',
       range: '₹3,000 - ₹7,000',
@@ -554,16 +556,15 @@ function App() {
     },
     {
       id: 'open-pores',
-      title: 'Open Pores Treatment',
+      title: 'Open Pore Treatment',
       category: 'Skin Laser & Glow',
       badge: 'Pore Tightening',
-      desc: 'Minimize enlarged pores and achieve refined skin texture.',
+      desc: 'Advanced treatments designed to reduce the appearance of enlarged pores and improve overall skin texture.',
       bullets: [
-        'Tighter Looking Skin',
-        'Reduced Pore Visibility',
-        'Improved Texture',
-        'Oil Control',
-        'Enhanced Glow'
+        'Reduced pore visibility',
+        'Better oil control',
+        'Smoother complexion',
+        'Improved skin quality'
       ],
       price: '₹4,500',
       range: '₹4,000 - ₹6,000',
@@ -571,111 +572,28 @@ function App() {
     },
     {
       id: 'rejuvenation',
-      title: 'Skin Rejuvenation',
+      title: 'Skin Rejuvenation Treatment',
       category: 'Pigmentation & Glow',
       badge: 'Premium Glow',
-      desc: 'Restore youthful, healthy and radiant skin.',
+      desc: 'Refresh tired, dull, and ageing skin with treatments designed to improve hydration, elasticity, and overall skin health.',
       bullets: [
-        'Collagen Stimulation',
-        'Improved Elasticity',
-        'Natural Glow',
-        'Hydrated Appearance',
-        'Younger Looking Skin'
+        'Improved hydration',
+        'Better skin texture',
+        'Enhanced radiance',
+        'Healthier-looking skin'
       ],
       price: '₹4,000',
       range: '₹4,000 - ₹6,500',
-      image: '/pmu-lip1.jpg'
-    },
-    {
-      id: 'laser-hair-reduction',
-      title: 'Laser Hair Reduction',
-      category: 'Hair & Scalp',
-      badge: 'Permanent Reduction',
-      desc: 'Long term hair reduction with no ingrown hair or skin darkening. Saves time and effort.',
-      bullets: [
-        'Long Term Hair Reduction',
-        'No Ingrown Hair or Skin Darkening',
-        'Saves Time and Effort',
-        'Safe for All Skin Types',
-        'Smooth & Hair-Free Skin'
-      ],
-      price: '₹1,000',
-      range: '₹1,000 - ₹30,000 / Session',
-      offer: 'Up To 40% OFF',
       image: '/laser-uhr2.jpg'
-    },
-    {
-      id: 'hair-gfc',
-      title: 'Hair GFC Therapy',
-      category: 'Hair & Scalp',
-      badge: 'Growth Factor',
-      desc: 'Safe and natural treatment that reduces hair fall and promotes hair regrowth and density.',
-      bullets: [
-        'Reduces Hair Fall',
-        'Promotes Hair Regrowth & Density',
-        'Safe & Natural Treatment',
-        'Stimulates Hair Follicles',
-        'Non-Surgical Solution'
-      ],
-      price: '₹5,000',
-      range: '₹5,000 - ₹10,000 / Session',
-      offer: 'Up To 40% OFF',
-      image: '/hair-gfc.jpg'
-    },
-    {
-      id: 'pmu-eyebrows',
-      title: 'PMU Eyebrows',
-      category: 'PMU & Permanent Makeup',
-      badge: 'Perfect Shape',
-      desc: 'Saves time everyday with perfect shape, symmetry and long-lasting smudgeproof results.',
-      bullets: [
-        'Saves Time Everyday',
-        'Perfect Shape & Symmetry',
-        'Long Lasting & Smudgeproof',
-        'Microblading/Ombre/Combination',
-        'Natural Looking Results'
-      ],
-      price: '₹20,000',
-      range: '₹20,000 - ₹40,000',
-      offer: 'Up To 25% OFF',
-      image: '/pmu-eyebrows1.jpg'
-    },
-    {
-      id: 'pmu-lipblush',
-      title: 'PMU Lipblush',
-      category: 'PMU & Permanent Makeup',
-      badge: 'Lip Enhancement',
-      desc: 'Defines lip borders and enhances natural lip colour for a long lasting and low maintenance look.',
-      bullets: [
-        'Defines Lip Borders',
-        'Enhances Natural Lip Colour',
-        'Long Lasting & Low Maintenance',
-        'Pigmentation Correction',
-        'Natural Finish'
-      ],
-      price: '₹20,000',
-      range: '₹20,000 - ₹40,000',
-      offer: 'Up To 25% OFF',
-      image: '/pmu-lip1.jpg'
-    },
-    {
-      id: 'scalp-micropigmentation',
-      title: 'Scalp Micropigmentation',
-      category: 'Hair & Scalp',
-      badge: 'Non-Surgical',
-      desc: 'Instant fuller hair look with quick results. Non-surgical, low maintenance and long lasting.',
-      bullets: [
-        'Instant Fuller Hair Look',
-        'Quick Results, Non-Surgical',
-        'Low Maintenance & Long Lasting',
-        'Customized Treatment',
-        'Natural Appearance'
-      ],
-      price: '₹20,000',
-      range: '₹20,000 - ₹1,00,000',
-      offer: '',
-      image: '/hair-transplant.jpg'
     }
+  ]
+
+  const treatmentSlides = [
+    { src: '/carbon-peel.jpg', title: 'Pico Hollywood Carbon Laser', desc: 'Deep pore cleansing & instant glow' },
+    { src: '/laser-toning.jpg', title: 'Q-Switched Laser Toning', desc: 'Pigmentation & melasma clearing' },
+    { src: '/laser-uhr3.jpg', title: 'Skin Resurfacing', desc: 'Texture improvement & collagen renewal' },
+    { src: '/laser-uhr1.jpg', title: 'Acne Scar Treatment', desc: 'Scar revision & smooth texture' },
+    { src: '/carbonpeel1.jpg', title: 'Open Pores Treatment', desc: 'Pore tightening & oil control' },
   ]
 
   const beforeAfterImages = {
@@ -684,6 +602,18 @@ function App() {
       after: '/after_face.png',
       title: 'Carbon Laser Resurfacing (Acne Scars & Glow)',
       text: 'After 3 sessions: Clean pores, normalized sebum, and 85% improvement in texture.'
+    },
+    acne: {
+      before: '/carbonpeel-before.png',
+      after: '/carbonpeel-after.png',
+      title: 'Acne Scar Revision Treatment',
+      text: 'After 4 sessions: Significant reduction in acne scar depth, smoother skin texture, and renewed confidence.'
+    },
+    pigment: {
+      before: '/before_face.png',
+      after: '/after_face.png',
+      title: 'Pigmentation & Tone Correction',
+      text: 'After 3 sessions: Noticeable reduction in pigmentation, more even skin tone, and enhanced skin brightness.'
     }
   }
 
@@ -833,6 +763,30 @@ function App() {
     setActiveTreatmentIndex(0)
   }, [treatmentFilter])
 
+  // Auto-scroll treatment carousel
+  useEffect(() => {
+    if (isCarouselHovered || isPageScrolling) return
+    const interval = setInterval(() => {
+      setActiveTreatmentSlide((prev) => (prev + 1) % treatmentSlides.length)
+    }, 3500)
+    return () => clearInterval(interval)
+  }, [isCarouselHovered, isPageScrolling, treatmentSlides.length])
+
+  // Pause hero carousel auto-scroll while page is being scrolled
+  useEffect(() => {
+    let scrollTimeout
+    const handleScroll = () => {
+      setIsPageScrolling(true)
+      clearTimeout(scrollTimeout)
+      scrollTimeout = setTimeout(() => setIsPageScrolling(false), 600)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      clearTimeout(scrollTimeout)
+    }
+  }, [])
+
   // Automatic scrolling for reviews
   useEffect(() => {
     const container = reviewsScrollRef.current;
@@ -888,6 +842,9 @@ function App() {
   const [tlCard1Ref, tlCard1In] = useInView(0.2)
   const [tlCard2Ref, tlCard2In] = useInView(0.2)
   const [tlCard3Ref, tlCard3In] = useInView(0.2)
+  const [tlCard4Ref, tlCard4In] = useInView(0.2)
+  const [tlCard5Ref, tlCard5In] = useInView(0.2)
+  const [tlCard6Ref, tlCard6In] = useInView(0.2)
 
   const handlePrevTreatment = () => {
     setActiveTreatmentIndex((prev) => (prev === 0 ? filteredTreatments.length - 1 : prev - 1))
@@ -926,6 +883,7 @@ function App() {
           {/* Navigation Links - Desktop */}
           <nav className="desktop-nav" style={{ gap: '26px' }}>
             <a href="#treatments" onClick={(e) => { e.preventDefault(); scrollToSection(treatmentsRef); }} style={{ fontSize: '13px', fontWeight: '500', textDecoration: 'none', color: 'var(--color-text-secondary)' }} className="nav-link-hover">Treatments</a>
+            <a href="#doctor" onClick={(e) => { e.preventDefault(); scrollToSection(doctorRef); }} style={{ fontSize: '13px', fontWeight: '500', textDecoration: 'none', color: 'var(--color-text-secondary)' }} className="nav-link-hover">Doctor</a>
             <a href="#before-after" style={{ fontSize: '13px', fontWeight: '500', textDecoration: 'none', color: 'var(--color-text-secondary)' }} className="nav-link-hover">Before & After</a>
             <a href="#reviews" style={{ fontSize: '13px', fontWeight: '500', textDecoration: 'none', color: 'var(--color-text-secondary)' }} className="nav-link-hover">Reviews</a>
             <a href="#faq" style={{ fontSize: '13px', fontWeight: '500', textDecoration: 'none', color: 'var(--color-text-secondary)' }} className="nav-link-hover">FAQs</a>
@@ -990,6 +948,7 @@ function App() {
           }}>
             <nav style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <a href="#treatments" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); scrollToSection(treatmentsRef); }} style={{ fontSize: '15px', fontWeight: '600', textDecoration: 'none', color: 'var(--color-text-primary)' }}>Treatments</a>
+              <a href="#doctor" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); scrollToSection(doctorRef); }} style={{ fontSize: '15px', fontWeight: '600', textDecoration: 'none', color: 'var(--color-text-primary)' }}>Doctor</a>
               <a href="#before-after" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '15px', fontWeight: '600', textDecoration: 'none', color: 'var(--color-text-primary)' }}>Before & After</a>
               <a href="#reviews" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '15px', fontWeight: '600', textDecoration: 'none', color: 'var(--color-text-primary)' }}>Reviews</a>
               <a href="#faq" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '15px', fontWeight: '600', textDecoration: 'none', color: 'var(--color-text-primary)' }}>FAQs</a>
@@ -1090,32 +1049,9 @@ function App() {
                 </span>
               </h1>
 
-              <p className="hero-kv-desc" style={{ animation: 'heroKvFadeIn 0.7s ease forwards 0.5s' }}>
-                Transform your skin with advanced laser technology and personalized aesthetic treatments at Kairavam Advanced Skin &amp; Laser Clinic, Vijayawada.
+              <p className="hero-kv-desc" style={{ animation: 'heroKvFadeIn 0.7s ease forwards 0.4s', fontSize: '14px', marginTop: '12px' }}>
+                Expert Skin &amp; Laser Treatments for Acne Scars, Pigmentation, Open Pores, Skin Resurfacing &amp; Rejuvenation
               </p>
-
-              <div className="hero-kv-list" style={{ animation: 'heroKvFadeIn 0.7s ease forwards 0.55s' }}>
-                <div className="hero-kv-list-item">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  FDA Approved Technologies
-                </div>
-                <div className="hero-kv-list-item">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  Experienced Aesthetic Specialists
-                </div>
-                <div className="hero-kv-list-item">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  Personalized Treatment Plans
-                </div>
-                <div className="hero-kv-list-item">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  Minimal Downtime Procedures
-                </div>
-                <div className="hero-kv-list-item">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  Safe &amp; Hygienic Environment
-                </div>
-              </div>
 
               <div className="hero-kv-offer-badge" style={{ animation: 'heroKvFadeIn 0.7s ease forwards 0.6s', marginTop: '16px', marginBottom: '16px' }}>
                 <span style={{ display: 'inline-block', background: 'linear-gradient(135deg, #a68263, #c9a96e)', color: '#fff', padding: '8px 20px', borderRadius: '50px', fontSize: '13px', fontWeight: '700', letterSpacing: '0.02em' }}>
@@ -1143,13 +1079,52 @@ function App() {
 
             </div>
 
-            {/* Right: Image */}
+            {/* Right: Scrolling Treatment Images */}
             <div className="hero-kv-image-col" style={{ animation: 'heroKvReveal 1s ease forwards 0.3s' }}>
-              <div className="hero-kv-image-frame">
-                <div className="hero-kv-image" style={{ backgroundImage: `url('/cosmetologist-yamini.jpg')` }}></div>
-                <div className="hero-kv-image-gradient"></div>
-                <div className="hero-kv-image-border"></div>
-                <div className="hero-kv-image-accent"></div>
+              <div
+                className="hero-kv-carousel"
+                onMouseEnter={() => setIsCarouselHovered(true)}
+                onMouseLeave={() => setIsCarouselHovered(false)}
+                onTouchStart={() => setIsCarouselHovered(true)}
+                onTouchEnd={() => setIsCarouselHovered(false)}
+              >
+                <div className="hero-kv-carousel-track" style={{ transform: `translateX(-${activeTreatmentSlide * 100}%)` }}>
+                  {treatmentSlides.map((slide, i) => (
+                    <div key={i} className="hero-kv-carousel-slide">
+                      <img src={slide.src} alt={slide.title} className="hero-kv-carousel-img" />
+                      <div className="hero-kv-carousel-overlay">
+                        <span className="hero-kv-carousel-title">{slide.title}</span>
+                        <span className="hero-kv-carousel-desc">{slide.desc}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="hero-kv-carousel-dots">
+                  {treatmentSlides.map((_, i) => (
+                    <button
+                      key={i}
+                      className={`hero-kv-carousel-dot ${i === activeTreatmentSlide ? 'active' : ''}`}
+                      onClick={() => setActiveTreatmentSlide(i)}
+                      aria-label={`Slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  className="hero-kv-carousel-nav hero-kv-carousel-nav-prev"
+                  onClick={() => setActiveTreatmentSlide((prev) => (prev === 0 ? treatmentSlides.length - 1 : prev - 1))}
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <button
+                  className="hero-kv-carousel-nav hero-kv-carousel-nav-next"
+                  onClick={() => setActiveTreatmentSlide((prev) => (prev + 1) % treatmentSlides.length)}
+                  aria-label="Next slide"
+                >
+                  <ChevronRight size={16} />
+                </button>
               </div>
 
               {/* Desktop Floating Badges */}
@@ -1214,6 +1189,149 @@ function App() {
                   <div className="hero-kv-float-card-text">
                     <span>4.9 Google Rating</span>
                     <small>Loved by patients</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MEET DR. YAMINI */}
+      <section ref={doctorRef} id="doctor" className="section-padding" style={{ background: '#ffffff', borderBottom: '1px solid var(--color-border-primary)', position: 'relative', overflow: 'hidden' }}>
+        <img src="/leaves_6.png" className="floating-asset" style={{ top: '8%', right: '3%', width: '100px', opacity: 0.08 }} alt="" />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="grid2" style={{ alignItems: 'center', gap: '50px' }}>
+            <div className="hero-kv-image-frame" style={{ maxWidth: '420px', margin: '0 auto' }}>
+              <div className="hero-kv-image" style={{ backgroundImage: `url('/cosmetologist-yamini.jpg')` }}></div>
+              <div className="hero-kv-image-gradient"></div>
+              <div className="hero-kv-image-border"></div>
+              <div className="hero-kv-image-accent"></div>
+            </div>
+            <div className="col" style={{ gap: '20px' }}>
+              <span className="section-subtitle">Meet Your Aesthetic Specialist</span>
+              <h2 className="section-title" style={{ marginBottom: '8px' }}>Dr. Yamini <span>MBBS, MD</span></h2>
+              <p className="section-desc" style={{ margin: '0 0 8px', maxWidth: '100%', fontSize: '15px' }}>
+                With over a decade of clinical experience, Dr. Yamini is a highly skilled aesthetic physician specializing in advanced laser treatments, skin rejuvenation, and personalized dermatological care. Her patient-first approach combines medical expertise with an artistic eye, ensuring natural-looking results tailored to each individual.
+              </p>
+              <p className="section-desc" style={{ margin: '0 0 8px', maxWidth: '100%', fontSize: '14px' }}>
+                Dr. Yamini has successfully performed thousands of laser procedures for acne scars, pigmentation, open pores, skin resurfacing, and overall skin rejuvenation. She believes in educating patients about their skin and involving them in every step of the treatment journey.
+              </p>
+              <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', marginTop: '8px' }}>
+                <div className="col" style={{ gap: '2px' }}>
+                  <span style={{ fontSize: '24px', fontWeight: '700', color: 'var(--color-theme-secondary)', fontFamily: 'var(--font-serif)' }}>10+</span>
+                  <span style={{ fontSize: '11px', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Years Experience</span>
+                </div>
+                <div className="col" style={{ gap: '2px' }}>
+                  <span style={{ fontSize: '24px', fontWeight: '700', color: 'var(--color-theme-secondary)', fontFamily: 'var(--font-serif)' }}>15K+</span>
+                  <span style={{ fontSize: '11px', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Happy Patients</span>
+                </div>
+                <div className="col" style={{ gap: '2px' }}>
+                  <span style={{ fontSize: '24px', fontWeight: '700', color: 'var(--color-theme-secondary)', fontFamily: 'var(--font-serif)' }}>50+</span>
+                  <span style={{ fontSize: '11px', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Treatments Offered</span>
+                </div>
+              </div>
+              <div style={{ marginTop: '12px' }}>
+                <button onClick={() => scrollToSection(bookingFormRef)} className="btn-gold" style={{ padding: '14px 32px', fontSize: '11px' }}>
+                  Consult Dr. Yamini <ArrowRight size={14} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SKIN TREATMENT SERVICES */}
+      <section className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: 'var(--color-bg-main)' }}>
+        <div className="container">
+          <div className="text-center">
+            <span className="section-subtitle">Our Specialized Treatments</span>
+            <h2 className="section-title">Advanced Solutions for <span>Every Skin Concern</span></h2>
+            <p className="section-desc">
+              Personalized treatment plans using advanced technology to address your unique skin needs.
+            </p>
+          </div>
+
+          <div className="grid3">
+            <div className="luxury-spa-card" style={{ gap: '16px' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--color-text-primary)' }}>Pigmentation Treatment</h3>
+              <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)', lineHeight: '1.6' }}>
+                Customized solutions for melasma, sunspots, tanning, and uneven skin tone designed to improve skin clarity and create a more balanced complexion.
+              </p>
+              <div style={{ borderTop: '1px solid var(--color-border-primary)', paddingTop: '12px' }}>
+                <span style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-theme-secondary)', marginBottom: '8px', display: 'block' }}>Benefits:</span>
+                <div className="col" style={{ gap: '6px' }}>
+                  <div className="row" style={{ gap: '8px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>Reduced discoloration</span>
+                  </div>
+                  <div className="row" style={{ gap: '8px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>More even skin tone</span>
+                  </div>
+                  <div className="row" style={{ gap: '8px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>Enhanced skin brightness</span>
+                  </div>
+                  <div className="row" style={{ gap: '8px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>Improved skin clarity</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="luxury-spa-card" style={{ gap: '16px' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--color-text-primary)' }}>Open Pore Treatment</h3>
+              <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)', lineHeight: '1.6' }}>
+                Advanced treatments designed to reduce the appearance of enlarged pores and improve overall skin texture.
+              </p>
+              <div style={{ borderTop: '1px solid var(--color-border-primary)', paddingTop: '12px' }}>
+                <span style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-theme-secondary)', marginBottom: '8px', display: 'block' }}>Benefits:</span>
+                <div className="col" style={{ gap: '6px' }}>
+                  <div className="row" style={{ gap: '8px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>Reduced pore visibility</span>
+                  </div>
+                  <div className="row" style={{ gap: '8px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>Better oil control</span>
+                  </div>
+                  <div className="row" style={{ gap: '8px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>Smoother complexion</span>
+                  </div>
+                  <div className="row" style={{ gap: '8px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>Improved skin quality</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="luxury-spa-card" style={{ gap: '16px' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--color-text-primary)' }}>Skin Rejuvenation Treatment</h3>
+              <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)', lineHeight: '1.6' }}>
+                Refresh tired, dull, and ageing skin with treatments designed to improve hydration, elasticity, and overall skin health.
+              </p>
+              <div style={{ borderTop: '1px solid var(--color-border-primary)', paddingTop: '12px' }}>
+                <span style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-theme-secondary)', marginBottom: '8px', display: 'block' }}>Benefits:</span>
+                <div className="col" style={{ gap: '6px' }}>
+                  <div className="row" style={{ gap: '8px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>Improved hydration</span>
+                  </div>
+                  <div className="row" style={{ gap: '8px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>Better skin texture</span>
+                  </div>
+                  <div className="row" style={{ gap: '8px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>Enhanced radiance</span>
+                  </div>
+                  <div className="row" style={{ gap: '8px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#a68263" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>Healthier-looking skin</span>
                   </div>
                 </div>
               </div>
@@ -1298,7 +1416,7 @@ function App() {
           {/* Filters Bar Wrapper */}
           <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
             <div className="filter-tabs">
-              {['All', 'Skin Laser & Glow', 'Scar & Texture', 'Pigmentation & Glow', 'Hair & Scalp', 'PMU & Permanent Makeup'].map((tab) => (
+              {['All', 'Skin Laser & Glow', 'Scar & Texture', 'Pigmentation & Glow'].map((tab) => (
                 <button
                   key={tab}
                   className={`filter-tab ${treatmentFilter === tab ? 'active' : ''}`}
@@ -1381,15 +1499,20 @@ function App() {
                       <p style={{ fontSize: '12.5px', color: 'var(--color-text-secondary)', lineHeight: '1.45', minHeight: '56px' }}>{t.desc}</p>
                     </div>
 
-                    {/* Bullets */}
-                    <div style={{ borderTop: '1px solid var(--color-border-primary)', paddingTop: '12px' }} className="col">
-                      {t.bullets.map((b, i) => (
-                        <div key={i} className="row treatment-bullet-item" style={{ gap: '6px', alignItems: 'flex-start', transition: 'transform 0.3s ease' }}>
-                          <Check size={12} style={{ color: 'var(--color-theme-primary)', marginTop: '3px', flexShrink: 0 }} />
-                          <span style={{ fontSize: '11.5px', color: 'var(--color-text-secondary)' }}>{b}</span>
-                        </div>
-                      ))}
-                    </div>
+                    {/* Bullets / Suitable For */}
+                    {(t.bullets || t.suitableFor) && (
+                      <div style={{ borderTop: '1px solid var(--color-border-primary)', paddingTop: '12px' }} className="col">
+                        {t.suitableFor && (
+                          <span style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-theme-secondary)', marginBottom: '8px', display: 'block' }}>Suitable For:</span>
+                        )}
+                        {(t.bullets || t.suitableFor).map((b, i) => (
+                          <div key={i} className="row treatment-bullet-item" style={{ gap: '6px', alignItems: 'flex-start', transition: 'transform 0.3s ease' }}>
+                            <Check size={12} style={{ color: 'var(--color-theme-primary)', marginTop: '3px', flexShrink: 0 }} />
+                            <span style={{ fontSize: '11.5px', color: 'var(--color-text-secondary)' }}>{b}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
 
                     {/* Footer Pricing & CTA */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', paddingTop: '12px', borderTop: '1px solid rgba(0,0,0,0.03)' }}>
@@ -1575,6 +1698,141 @@ function App() {
               </div>
             </div>
 
+            {/* ── Timeline Item 4: Acne Scar Treatment (right) ── */}
+            <div ref={tlCard4Ref} className={`timeline-item${tlCard4In ? ' in-view' : ''}`}>
+              <div className="timeline-marker"></div>
+              <div className={`timeline-card${tlCard4In ? ' in-view' : ''}`}>
+                <div className="row" style={{ gap: '12px', alignItems: 'flex-start' }}>
+                  <div className="timeline-card-icon">
+                    <Target size={18} style={{ color: 'var(--color-theme-secondary)' }} />
+                  </div>
+                  <div className="col" style={{ gap: '2px' }}>
+                    <h3>Acne Scar Treatment</h3>
+                    <span className="insight-subtitle">Scar Revision, Texture Smoothing & Collagen Remodeling</span>
+                  </div>
+                </div>
+                <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                  Our targeted laser treatments for acne scars work by stimulating collagen production deep within the dermis. The laser energy remodels scar tissue, smooths uneven texture, and promotes healthy skin regeneration. Each treatment plan is customized based on scar type — whether boxcar, rolling, or icepick — for optimal results.
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                  <div className="stat-card"><div className="stat-value">86%</div><span className="stat-label">Scar Appearance Reduced</span></div>
+                  <div className="stat-card"><div className="stat-value">+88%</div><span className="stat-label">Skin Texture Improved</span></div>
+                </div>
+                <div className="col" style={{ gap: '8px' }}>
+                  <span className="section-label">Before vs After Snapshot</span>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', fontSize: '12px' }}>
+                    <div className="ba-box ba-box-before"><strong style={{ color: 'var(--color-text-primary)' }}>Before:</strong> Visible acne scars, uneven texture, post-acne marks, and rough skin surface.</div>
+                    <div className="ba-box ba-box-after"><strong style={{ color: 'var(--color-theme-secondary)' }}>After:</strong> Smoother skin texture, significantly reduced scar depth, and renewed skin confidence.</div>
+                  </div>
+                </div>
+                <div className="media-grid">
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/laser-uhr1.jpg')` }}></div><span className="media-caption">Laser Scar Session</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/carbonpeel-after.png')` }}></div><span className="media-caption">Smooth Result</span></div>
+                </div>
+                <div className="progress-card">
+                  <span className="progress-title">Procedure Success Markers</span>
+                  <div className="col" style={{ gap: '10px' }}>
+                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Scar Reduction</span><span>86% Improvement</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '86%' }}></div></div></div>
+                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Texture Smoothness</span><span>88% Improvement</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '88%' }}></div></div></div>
+                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Collagen Stimulation</span><span>90% Activation</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '90%' }}></div></div></div>
+                  </div>
+                </div>
+                <button onClick={() => { setFormData(prev => ({ ...prev, treatment: 'Acne Scar Treatment' })); scrollToSection(bookingFormRef); }} className="btn-gold" style={{ padding: '12px 24px', fontSize: '11px', alignSelf: 'flex-start' }}>
+                  Book This Treatment <ArrowUpRight size={13} />
+                </button>
+              </div>
+            </div>
+
+            {/* ── Timeline Item 5: Pigmentation Treatment (left) ── */}
+            <div ref={tlCard5Ref} className={`timeline-item${tlCard5In ? ' in-view' : ''}`}>
+              <div className="timeline-marker"></div>
+              <div className={`timeline-card${tlCard5In ? ' in-view' : ''}`}>
+                <div className="row" style={{ gap: '12px', alignItems: 'flex-start' }}>
+                  <div className="timeline-card-icon">
+                    <Scan size={18} style={{ color: 'var(--color-theme-secondary)' }} />
+                  </div>
+                  <div className="col" style={{ gap: '2px' }}>
+                    <h3>Pigmentation Treatment</h3>
+                    <span className="insight-subtitle">Melasma, Sunspots, Tanning & Uneven Tone Correction</span>
+                  </div>
+                </div>
+                <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                  Our advanced pigmentation treatments use Q-Switched laser technology to target excess melanin at the epidermal and dermal levels. The laser energy breaks down pigment particles into microscopic fragments, which are then naturally eliminated by the body. This approach effectively treats melasma, sun damage, tanning, and post-inflammatory hyperpigmentation.
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                  <div className="stat-card"><div className="stat-value">84%</div><span className="stat-label">Pigmentation Cleared</span></div>
+                  <div className="stat-card"><div className="stat-value">+87%</div><span className="stat-label">Skin Tone Uniformity</span></div>
+                </div>
+                <div className="col" style={{ gap: '8px' }}>
+                  <span className="section-label">Before vs After Snapshot</span>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', fontSize: '12px' }}>
+                    <div className="ba-box ba-box-before"><strong style={{ color: 'var(--color-text-primary)' }}>Before:</strong> Dark patches, uneven skin tone, stubborn melasma, and sun-induced pigmentation.</div>
+                    <div className="ba-box ba-box-after"><strong style={{ color: 'var(--color-theme-secondary)' }}>After:</strong> Clear, unified complexion with significantly reduced pigmentation and renewed radiance.</div>
+                  </div>
+                </div>
+                <div className="media-grid">
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/laser-toning.jpg')` }}></div><span className="media-caption">Laser Toning Session</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/before_face.png')` }}></div><span className="media-caption">Pigment Clearance</span></div>
+                </div>
+                <div className="progress-card">
+                  <span className="progress-title">Procedure Success Markers</span>
+                  <div className="col" style={{ gap: '10px' }}>
+                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Pigment Reduction</span><span>84% Clearance</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '84%' }}></div></div></div>
+                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Tone Uniformity</span><span>87% Uniformity</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '87%' }}></div></div></div>
+                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Melasma Reduction</span><span>76% Clearance</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '76%' }}></div></div></div>
+                  </div>
+                </div>
+                <button onClick={() => { setFormData(prev => ({ ...prev, treatment: 'Pigmentation Treatment' })); scrollToSection(bookingFormRef); }} className="btn-gold" style={{ padding: '12px 24px', fontSize: '11px', alignSelf: 'flex-start' }}>
+                  Book This Treatment <ArrowUpRight size={13} />
+                </button>
+              </div>
+            </div>
+
+            {/* ── Timeline Item 6: Open Pore Treatment (right) ── */}
+            <div ref={tlCard6Ref} className={`timeline-item${tlCard6In ? ' in-view' : ''}`}>
+              <div className="timeline-marker"></div>
+              <div className={`timeline-card${tlCard6In ? ' in-view' : ''}`}>
+                <div className="row" style={{ gap: '12px', alignItems: 'flex-start' }}>
+                  <div className="timeline-card-icon">
+                    <Droplets size={18} style={{ color: 'var(--color-theme-secondary)' }} />
+                  </div>
+                  <div className="col" style={{ gap: '2px' }}>
+                    <h3>Open Pore Treatment</h3>
+                    <span className="insight-subtitle">Pore Tightening, Oil Control & Texture Refinement</span>
+                  </div>
+                </div>
+                <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                  Enlarged pores are treated using a combination of carbon laser peeling and advanced skin renewal techniques. The treatment deeply cleanses clogged pores, removes excess sebum and debris, and stimulates collagen around pore walls. This leads to visibly tighter pores, improved skin texture, and better oil balance for a refined, smooth complexion.
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                  <div className="stat-card"><div className="stat-value">82%</div><span className="stat-label">Pore Size Reduction</span></div>
+                  <div className="stat-card"><div className="stat-value">+85%</div><span className="stat-label">Oil Control Improvement</span></div>
+                </div>
+                <div className="col" style={{ gap: '8px' }}>
+                  <span className="section-label">Before vs After Snapshot</span>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', fontSize: '12px' }}>
+                    <div className="ba-box ba-box-before"><strong style={{ color: 'var(--color-text-primary)' }}>Before:</strong> Visible enlarged pores, excess oil production, rough texture, and clogged appearance.</div>
+                    <div className="ba-box ba-box-after"><strong style={{ color: 'var(--color-theme-secondary)' }}>After:</strong> Refined, minimized pores, balanced oil production, and smoother, healthier-looking skin.</div>
+                  </div>
+                </div>
+                <div className="media-grid">
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/carbonpeel1.jpg')` }}></div><span className="media-caption">Carbon Peel Session</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/carbon-peel.jpg')` }}></div><span className="media-caption">Pore Refinement</span></div>
+                </div>
+                <div className="progress-card">
+                  <span className="progress-title">Procedure Success Markers</span>
+                  <div className="col" style={{ gap: '10px' }}>
+                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Pore Tightening</span><span>82% Reduction</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '82%' }}></div></div></div>
+                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Oil Balance</span><span>85% Control</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '85%' }}></div></div></div>
+                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Texture Smoothness</span><span>83% Improvement</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '83%' }}></div></div></div>
+                  </div>
+                </div>
+                <button onClick={() => { setFormData(prev => ({ ...prev, treatment: 'Open Pore Treatment' })); scrollToSection(bookingFormRef); }} className="btn-gold" style={{ padding: '12px 24px', fontSize: '11px', alignSelf: 'flex-start' }}>
+                  Book This Treatment <ArrowUpRight size={13} />
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -1656,6 +1914,18 @@ function App() {
                   className={`filter-tab ${activeCompareCategory === 'skin' ? 'active' : ''}`}
                 >
                   Carbon Laser (Skin)
+                </button>
+                <button
+                  onClick={() => { setActiveCompareCategory('acne'); setSliderPosition(50); }}
+                  className={`filter-tab ${activeCompareCategory === 'acne' ? 'active' : ''}`}
+                >
+                  Acne Scar Revision
+                </button>
+                <button
+                  onClick={() => { setActiveCompareCategory('pigment'); setSliderPosition(50); }}
+                  className={`filter-tab ${activeCompareCategory === 'pigment' ? 'active' : ''}`}
+                >
+                  Pigmentation Treatment
                 </button>
               </div>
 
