@@ -3222,7 +3222,7 @@ function App() {
             gap: '12px'
           }}>
             <span>© 2026 Kairavam Advanced Skin &amp; Laser Clinic. All rights reserved.</span>
-            <a href="https://digitalverto.com/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#a5792d', fontWeight: '600', fontSize: '13px', letterSpacing: '1.5px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>Powered by Digital Verto <img src="/dv%20logo%20aw-05%20(1).png" alt="DV Logo" style={{ height: '30px', width: 'auto', animation: 'dvHandWave 2s ease-in-out infinite', transformOrigin: 'center center' }} /></a>
+            <a href="https://digitalverto.com/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#a5792d', fontWeight: '600', fontSize: '13px', letterSpacing: '1.5px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>Powered by Digital Verto <img src="/dv-logo.png" alt="DV Logo" style={{ height: '30px', width: 'auto', animation: 'dvHandWave 2s ease-in-out infinite', transformOrigin: 'center center' }} /></a>
             <div className="row" style={{ gap: '16px' }}>
               <span style={{ cursor: 'pointer' }}>Privacy Policy</span>
               <span style={{ cursor: 'pointer' }}>Terms of Service</span>
