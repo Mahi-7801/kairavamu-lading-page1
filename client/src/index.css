@@ -412,8 +412,13 @@ p {
 }
 
 @keyframes marqueeScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .marquee-container {
@@ -1022,14 +1027,17 @@ p {
     aspect-ratio: 16/9;
     border-radius: 0;
   }
+
   .hero-kv-carousel-nav {
     opacity: 1;
     width: 32px;
     height: 32px;
   }
+
   .hero-kv-carousel-title {
     font-size: 14px;
   }
+
   .hero-kv-carousel-desc {
     font-size: 11px;
   }
@@ -1734,6 +1742,7 @@ p {
     opacity: 0;
     transform: translateY(30px) scale(0.97);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -1858,19 +1867,40 @@ p {
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes pulse-animation {
-  0% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.08); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.8; }
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
 }
 
 /* ===== PREMIUM QUIZ STEPPER ===== */
@@ -2102,8 +2132,17 @@ p {
 }
 
 @keyframes scannerSweep {
-  0%, 100% { transform: translateY(-20px); opacity: 0.2; }
-  50% { transform: translateY(20px); opacity: 0.8; }
+
+  0%,
+  100% {
+    transform: translateY(-20px);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: translateY(20px);
+    opacity: 0.8;
+  }
 }
 
 .quiz-progress-block {
@@ -2544,7 +2583,7 @@ select.form-control option {
   border-radius: 50%;
   background: var(--color-theme-secondary);
   border: 3px solid #ffffff;
-  box-shadow: 0 0 0 3px var(--color-theme-secondary), 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 0 0 3px var(--color-theme-secondary), 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 2;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -2700,21 +2739,25 @@ select.form-control option {
   .timeline::before {
     left: 20px;
   }
+
   .timeline-marker {
     left: 20px;
     top: 28px;
     width: 12px;
     height: 12px;
   }
+
   .timeline-card {
     width: calc(100% - 48px);
     margin-left: 48px !important;
     padding: 20px;
     transform: translateX(0) !important;
   }
+
   .timeline-card.in-view {
     transform: translateX(0) !important;
   }
+
   .timeline-card .media-img {
     height: 80px;
   }
@@ -2760,7 +2803,7 @@ select.form-control option {
   }
 
   .luxury-spa-card {
-    padding: 20px !important;
+    padding: 26px !important;
     border-radius: 16px !important;
   }
 
@@ -3389,7 +3432,6 @@ select.form-control option {
 .carousel-slide-card {
   position: absolute;
   width: 360px;
-  max-width: 85vw;
   height: 600px;
   transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   transform-style: preserve-3d;
@@ -3441,8 +3483,8 @@ select.form-control option {
 
 /* Navigation Buttons */
 .carousel-nav-btn {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: #ffffff;
   border: 1px solid var(--color-border-primary);
@@ -3452,9 +3494,9 @@ select.form-control option {
   color: var(--color-theme-secondary);
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   flex-shrink: 0;
-  z-index: 12;
+  z-index: 20;
 }
 
 .carousel-nav-btn:hover {
@@ -3466,55 +3508,88 @@ select.form-control option {
 }
 
 .carousel-nav-prev {
-  margin-right: -15px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50px);
+  margin: 0;
 }
 
 .carousel-nav-next {
-  margin-left: -15px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(6px);
+  margin: 0;
 }
 
-/* Mobile responsive adjustments */
+/* ======= MOBILE: Horizontal snap scroll carousel ======= */
 @media (max-width: 768px) {
+  .treatment-carousel-wrapper {
+    padding: 10px 0 20px;
+    overflow: hidden;
+  }
+
   .treatment-carousel-track {
-    height: 620px;
+    /* Switch to horizontal scroll */
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    overflow-x: scroll !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    height: auto !important;
+    min-height: 540px;
+    max-width: 100% !important;
+    width: 100% !important;
+    gap: 14px;
+    padding: 12px 8vw !important;
+    perspective: none !important;
   }
 
+  .treatment-carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* All cards: flat, full opacity, no 3D transforms */
   .carousel-slide-card {
-    width: 300px;
-    height: 580px;
+    position: relative !important;
+    flex-shrink: 0 !important;
+    width: 82vw !important;
+    max-width: 300px !important;
+    height: auto !important;
+    min-height: 480px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    filter: none !important;
+    pointer-events: auto !important;
+    scroll-snap-align: center;
+    border-radius: 20px;
+    border: 1.5px solid var(--color-border-primary);
+    box-shadow: 0 6px 20px rgba(52, 79, 57, 0.08);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
   }
 
-  .carousel-slide-card.left-slide {
-    transform: scale(0.85) translate3d(-22%, 0, -60px) rotateY(8deg);
-    opacity: 0.5;
-    filter: blur(1px);
+  /* Override all 3D slide classes */
+  .carousel-slide-card.active-slide,
+  .carousel-slide-card.left-slide,
+  .carousel-slide-card.right-slide,
+  .carousel-slide-card.hidden-slide {
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    z-index: 1 !important;
   }
 
-  .carousel-slide-card.right-slide {
-    transform: scale(0.85) translate3d(22%, 0, -60px) rotateY(-8deg);
-    opacity: 0.5;
-    filter: blur(1px);
-  }
-
-  .carousel-nav-btn {
-    width: 38px;
-    height: 38px;
-  }
-
-  .carousel-nav-prev {
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    transform: translateX(-130%);
-    margin: 0;
-  }
-
-  .carousel-nav-next {
-    position: absolute;
-    bottom: 0px;
-    right: 50%;
-    transform: translateX(130%);
-    margin: 0;
+  /* Highlight the active card */
+  .carousel-slide-card.active-slide {
+    border-color: var(--color-theme-primary) !important;
+    box-shadow: 0 10px 30px rgba(166, 130, 99, 0.18) !important;
   }
 }
 
@@ -3615,19 +3690,45 @@ select.form-control option {
    ========================================================================== */
 
 @keyframes floatGentle1 {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(1deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
 }
+
 @keyframes floatGentle2 {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-6px) rotate(-1deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-6px) rotate(-1deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
 }
+
 @keyframes floatGentle3 {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(0.5deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(0.5deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
 }
 
 .hero-kv-float-badge-1 {
@@ -3640,7 +3741,7 @@ select.form-control option {
   padding: 14px 20px;
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 12px 40px rgba(52, 79, 57, 0.10), 0 2px 8px rgba(0,0,0,0.02);
+  box-shadow: 0 12px 40px rgba(52, 79, 57, 0.10), 0 2px 8px rgba(0, 0, 0, 0.02);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -3660,7 +3761,7 @@ select.form-control option {
   padding: 14px 20px;
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 12px 40px rgba(52, 79, 57, 0.10), 0 2px 8px rgba(0,0,0,0.02);
+  box-shadow: 0 12px 40px rgba(52, 79, 57, 0.10), 0 2px 8px rgba(0, 0, 0, 0.02);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -3680,7 +3781,7 @@ select.form-control option {
   padding: 14px 20px;
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 12px 40px rgba(52, 79, 57, 0.10), 0 2px 8px rgba(0,0,0,0.02);
+  box-shadow: 0 12px 40px rgba(52, 79, 57, 0.10), 0 2px 8px rgba(0, 0, 0, 0.02);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -3761,10 +3862,12 @@ select.form-control option {
     left: -20px;
     padding: 10px 14px;
   }
+
   .hero-kv-float-badge-2 {
     right: -20px;
     padding: 10px 14px;
   }
+
   .hero-kv-float-badge-3 {
     left: -10px;
     padding: 10px 14px;
@@ -3884,6 +3987,7 @@ select.form-control option {
     opacity: 0;
     transform: translateY(30px) scale(0.97);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -3894,11 +3998,13 @@ select.form-control option {
   .video-modal-overlay {
     padding: 0;
   }
+
   .video-modal-container {
     border-radius: 0;
     max-width: 100%;
     max-height: 100vh;
   }
+
   .video-modal-crop {
     max-height: 100vh;
   }
@@ -3909,6 +4015,7 @@ select.form-control option {
     opacity: 0;
     transform: translateY(30px) scale(0.97);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -3916,18 +4023,24 @@ select.form-control option {
 }
 
 @keyframes dvHandWave {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: rotate(0deg);
   }
+
   20% {
     transform: rotate(-15deg);
   }
+
   40% {
     transform: rotate(10deg);
   }
+
   60% {
     transform: rotate(-10deg);
   }
+
   80% {
     transform: rotate(5deg);
   }
@@ -3939,5 +4052,8 @@ select.form-control option {
     max-height: 60vh;
   }
 }
-.landing-page-root { overflow-x: hidden; width: 100%; }
 
+.landing-page-root {
+  overflow-x: hidden;
+  width: 100%;
+}

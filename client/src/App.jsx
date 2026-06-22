@@ -152,6 +152,7 @@ function App() {
 
   // Interactive Video Modal State
   const [videoModalOpen, setVideoModalOpen] = useState(false)
+  const [playingVideoIdx, setPlayingVideoIdx] = useState(null)
   const [lightboxImage, setLightboxImage] = useState(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -162,6 +163,7 @@ function App() {
   const doctorRef = useRef(null)
   const sliderRef = useRef(null)
   const reviewsScrollRef = useRef(null)
+  const carouselTrackRef = useRef(null)
 
   // --- HANDLERS & HELPERS ---
 
@@ -771,6 +773,29 @@ function App() {
     }, 3500)
     return () => clearInterval(interval)
   }, [isCarouselHovered, isPageScrolling, treatmentSlides.length])
+
+  // Auto-scroll treatments section coverflow carousel
+  useEffect(() => {
+    if (isCarouselHovered || isPageScrolling || !filteredTreatments || filteredTreatments.length === 0) return
+    const interval = setInterval(() => {
+      setActiveTreatmentIndex((prev) => (prev === filteredTreatments.length - 1 ? 0 : prev + 1))
+    }, 2000)
+    return () => clearInterval(interval)
+  }, [isCarouselHovered, isPageScrolling, filteredTreatments.length])
+
+  // Scroll mobile carousel track to active card position
+  useEffect(() => {
+    const track = carouselTrackRef.current
+    if (!track) return
+    // Only scroll if in mobile horizontal scroll mode
+    if (window.innerWidth > 768) return
+    const cards = track.querySelectorAll('.carousel-slide-card')
+    if (!cards[activeTreatmentIndex]) return
+    const card = cards[activeTreatmentIndex]
+    const trackCenter = track.offsetWidth / 2
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2
+    track.scrollTo({ left: cardCenter - trackCenter, behavior: 'smooth' })
+  }, [activeTreatmentIndex])
 
   // Pause hero carousel auto-scroll while page is being scrolled
   useEffect(() => {
@@ -1429,18 +1454,15 @@ function App() {
           </div>
 
           {/* Treatment Coverflow Carousel */}
-          <div className="treatment-carousel-wrapper">
-            {/* Left Nav Arrow */}
-            <button
-              className="carousel-nav-btn carousel-nav-prev"
-              onClick={handlePrevTreatment}
-              aria-label="Previous Treatment"
-            >
-              <ChevronLeft size={20} />
-            </button>
-
+          <div 
+            className="treatment-carousel-wrapper"
+            onMouseEnter={() => setIsCarouselHovered(true)}
+            onMouseLeave={() => setIsCarouselHovered(false)}
+            onTouchStart={() => setIsCarouselHovered(true)}
+            onTouchEnd={() => setIsCarouselHovered(false)}
+          >
             {/* Track Container */}
-            <div className="treatment-carousel-track treatment-carousel-track-animate" key={treatmentFilter}>
+            <div ref={carouselTrackRef} className="treatment-carousel-track treatment-carousel-track-animate" key={treatmentFilter}>
               {filteredTreatments.map((t, idx) => {
                 let offset = idx - activeTreatmentIndex;
                 if (filteredTreatments.length >= 3) {
@@ -1536,15 +1558,6 @@ function App() {
                 )
               })}
             </div>
-
-            {/* Right Nav Arrow */}
-            <button
-              className="carousel-nav-btn carousel-nav-next"
-              onClick={handleNextTreatment}
-              aria-label="Next Treatment"
-            >
-              <ChevronRight size={20} />
-            </button>
           </div>
 
         </div>
@@ -3079,58 +3092,76 @@ function App() {
                 label: 'Watch Procedure',
                 brand: 'Kairavam'
               }
-            ].map((reel, idx) => (
-              <div key={idx} className="insta-reel-card">
-                <div
-                  className="insta-reel-video-wrap"
-                  onClick={() => {
-                    const videoEl = document.querySelectorAll('.insta-reel-video')[idx]
-                    if (videoEl) {
-                      if (videoEl.paused) {
-                        videoEl.muted = false
-                        videoEl.play()
-                      } else {
-                        videoEl.pause()
-                      }
-                    }
-                  }}
-                >
-                  <video
-                    className="insta-reel-video"
-                    preload="metadata"
-                    playsInline
-                    muted
-                    loop
-                  >
-                    <source src={reel.src} type="video/mp4" />
-                  </video>
-                  <div className="insta-reel-play-overlay">
-                    <div className="insta-reel-play-btn">
-                      <Play size={20} fill="white" style={{ color: 'white' }} />
-                    </div>
-                  </div>
-                  <div className="insta-reel-label">{reel.label}</div>
-                </div>
-                <div className="insta-reel-footer">
-                  <span className="insta-reel-brand">{reel.brand}</span>
-                  <button
-                    className="insta-reel-watch"
+            ].map((reel, idx) => {
+              const isPlaying = playingVideoIdx === idx
+              return (
+                <div key={idx} className="insta-reel-card">
+                  <div
+                    className="insta-reel-video-wrap"
                     onClick={() => {
-                      const videoEl = document.querySelectorAll('.insta-reel-video')[idx]
+                      const videos = document.querySelectorAll('.insta-reel-video')
+                      // Pause all other videos
+                      videos.forEach((v, i) => { if (i !== idx) { v.pause(); v.muted = true } })
+                      const videoEl = videos[idx]
                       if (videoEl) {
-                        if (videoEl.paused) {
-                          videoEl.play()
-                        } else {
+                        if (isPlaying) {
                           videoEl.pause()
+                          setPlayingVideoIdx(null)
+                        } else {
+                          videoEl.muted = false
+                          videoEl.play()
+                          setPlayingVideoIdx(idx)
                         }
                       }
                     }}
                   >
-                    Watch
-                  </button>
+                    <video
+                      className="insta-reel-video"
+                      preload="metadata"
+                      playsInline
+                      muted
+                      loop
+                      onPause={() => { if (playingVideoIdx === idx) setPlayingVideoIdx(null) }}
+                      onPlay={() => setPlayingVideoIdx(idx)}
+                    >
+                      <source src={reel.src} type="video/mp4" />
+                    </video>
+                    {/* Only show overlay when NOT playing */}
+                    {!isPlaying && (
+                      <div className="insta-reel-play-overlay">
+                        <div className="insta-reel-play-btn">
+                          <Play size={20} fill="white" style={{ color: 'white' }} />
+                        </div>
+                      </div>
+                    )}
+                    {!isPlaying && <div className="insta-reel-label">{reel.label}</div>}
+                  </div>
+                  <div className="insta-reel-footer">
+                    <span className="insta-reel-brand">{reel.brand}</span>
+                    <button
+                      className="insta-reel-watch"
+                      onClick={() => {
+                        const videos = document.querySelectorAll('.insta-reel-video')
+                        videos.forEach((v, i) => { if (i !== idx) { v.pause(); v.muted = true } })
+                        const videoEl = videos[idx]
+                        if (videoEl) {
+                          if (isPlaying) {
+                            videoEl.pause()
+                            setPlayingVideoIdx(null)
+                          } else {
+                            videoEl.muted = false
+                            videoEl.play()
+                            setPlayingVideoIdx(idx)
+                          }
+                        }
+                      }}
+                    >
+                      {isPlaying ? 'Pause' : 'Watch'}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
         </div>
