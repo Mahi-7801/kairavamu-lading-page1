@@ -79,7 +79,7 @@ function SkinLaserPage({ scrollToSection, bookingFormRef }) {
   return (
     <>
       {/* HERO */}
-      <section className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', position: 'relative', background: 'linear-gradient(180deg, var(--color-bg-main) 0%, rgba(244, 237, 230, 0.4) 100%)' }}>
+      <section className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', position: 'relative', background: 'var(--color-bg-main)' }}>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="text-center" style={{ maxWidth: '800px', margin: '0 auto' }}>
             <span className="section-subtitle">Expert Skin & Laser Treatments for Acne Scars, Pigmentation, Open Pores, Skin Resurfacing & Rejuvenation</span>
@@ -103,7 +103,7 @@ function SkinLaserPage({ scrollToSection, bookingFormRef }) {
       </section>
 
       {/* WHY CHOOSE KAIRAVAM */}
-      <section className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: '#ffffff' }}>
+      <section className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: 'var(--color-bg-main)' }}>
         <div className="container">
           <div className="text-center">
             <span className="section-subtitle">Why Choose Kairavam?</span>
@@ -148,7 +148,7 @@ function SkinLaserPage({ scrollToSection, bookingFormRef }) {
       </section>
 
       {/* OUR ADVANCED SKIN & LASER TREATMENTS */}
-      <section className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: '#ffffff' }}>
+      <section className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: 'var(--color-bg-main)' }}>
         <div className="container">
           <div className="text-center">
             <span className="section-subtitle">Our Advanced Skin & Laser Treatments</span>
@@ -211,7 +211,7 @@ function SkinLaserPage({ scrollToSection, bookingFormRef }) {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: '#ffffff' }}>
+      <section id="faq" className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: 'var(--color-bg-main)' }}>
         <div className="container">
           <div className="text-center">
             <span className="section-subtitle">Frequently Asked Questions</span>
@@ -247,7 +247,7 @@ function SkinLaserPage({ scrollToSection, bookingFormRef }) {
             </p>
             <h3 style={{ fontSize: '22px', fontWeight: '600', color: '#ffffff', marginBottom: '24px' }}>Schedule Your Consultation Today</h3>
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <button onClick={() => scrollToSection(bookingFormRef)} className="btn-gold" style={{ padding: '14px 32px', fontSize: '12px', background: '#ffffff', color: 'var(--color-theme-secondary)' }}>
+              <button onClick={() => scrollToSection(bookingFormRef)} className="btn-gold" style={{ padding: '14px 32px', fontSize: '12px' }}>
                 Book an Appointment <ArrowRight size={14} />
               </button>
             </div>

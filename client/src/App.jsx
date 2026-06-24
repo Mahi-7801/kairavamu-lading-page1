@@ -33,7 +33,7 @@ import {
   Heart,
   Syringe
 } from 'lucide-react'
-import { submitBooking } from './api'
+import { submitBooking, API_BASE } from './api'
 import './App.css'
 
 const TypewriterText = ({ text, speed = 25 }) => {
@@ -155,6 +155,7 @@ function App() {
   const [playingVideoIdx, setPlayingVideoIdx] = useState(null)
   const [lightboxImage, setLightboxImage] = useState(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isOfferModalOpen, setIsOfferModalOpen] = useState(false)
 
   // References
   const bookingFormRef = useRef(null)
@@ -276,7 +277,7 @@ function App() {
 
     // 2. Call backend API for real-time analysis
     try {
-      const response = await fetch('http://localhost:3001/api/assess-skin', {
+      const response = await fetch(`${API_BASE}/assess-skin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -505,7 +506,7 @@ function App() {
       price: '₹3,000',
       range: '₹3,000 - ₹7,000 / Session',
       offer: 'Up To 40% OFF',
-      image: '/carbon-peel.jpg'
+      image: '/carbon_laser_clearing.png'
     },
     {
       id: 'resurfacing',
@@ -570,7 +571,7 @@ function App() {
       ],
       price: '₹4,500',
       range: '₹4,000 - ₹6,000',
-      image: '/carbonpeel1.jpg'
+      image: '/open_pore_clinical.png'
     },
     {
       id: 'rejuvenation',
@@ -591,11 +592,12 @@ function App() {
   ]
 
   const treatmentSlides = [
-    { src: '/carbon-peel.jpg', title: 'Pico Hollywood Carbon Laser', desc: 'Deep pore cleansing & instant glow' },
+    { src: '/carbon_laser_clearing.png', title: 'Pico Hollywood Carbon Laser', desc: 'Deep pore cleansing & instant glow' },
     { src: '/laser_toning_clinical.png', title: 'Q-Switched Laser Toning', desc: 'Pigmentation & melasma clearing' },
     { src: '/skin_resurfacing_clinical.png', title: 'Skin Resurfacing', desc: 'Texture improvement & collagen renewal' },
     { src: '/acne_scar_clinical.png', title: 'Acne Scar Treatment', desc: 'Scar revision & smooth texture' },
-    { src: '/carbonpeel1.jpg', title: 'Open Pores Treatment', desc: 'Pore tightening & oil control' },
+    { src: '/open_pore_clinical.png', title: 'Open Pores Treatment', desc: 'Pore tightening & oil control' },
+    { src: '/skin_rejuvenation_clinical.png', title: 'Skin Rejuvenation Treatment', desc: 'Cellular hydration & premium glow' }
   ]
 
   const beforeAfterImages = {
@@ -649,13 +651,13 @@ function App() {
       stars: 5,
       role: "Local Guide · 15 reviews · 4 photos",
       date: "a year ago",
-      text: "✨ Amazing Hair Botox Experience at Kairavaram Salon! ✨\n\nI recently had a Hair Botox treatment at Kairavaram Salon, and I couldn't be happier with the results! From start to finish, the experience was absolutely fantastic. The team was professional, attentive, and made sure I was comfortable throughout the process.\n\nMy hair feels silky smooth, frizz-free, and healthier than ever! The shine and softness are truly unbelievable, and I can already feel the long-lasting benefits of the treatment. The salon ambiance was relaxing, and the service was top-notch.\n\nIf you're looking for expert hair care and a transformation that makes you fall in love with your hair again, I highly recommend Kairavaram Salon! Thank you for the incredible service! ✨",
-      services: ["Hairstyling"],
-      requestedStyle: "Permanent hair Botox treatment",
-      hairType: "My hair before the botox treatment it is frezz",
+      text: "✨ Amazing Carbon Laser Treatment at Kairavam Clinic! ✨\n\nI recently had a Pico Carbon Laser Peel treatment at Kairavam, and I couldn't be happier with the results! The team was extremely professional, explained the procedure clearly, and made sure I was comfortable throughout.\n\nMy skin feels incredibly clean, my active acne has dried up, and there's a visible radiance and smooth texture! The clinical environment is top-notch, hygienic, and very relaxing. Highly recommend Kairavam for skin care!",
+      services: ["Carbon Laser Peel", "Acne Care"],
+      requestedStyle: "Pico Hollywood Carbon Laser & Skin Resurfacing",
+      hairType: "Skin type: Acne-prone and oily",
       photos: [
-        "https://lh3.googleusercontent.com/grass-cs/ANxoTn3HjMozC75nTEVvysL4PN__CSQ76sBYNCZJ0g1s03KMJauZKKOLh0kyaU57eXCsksN4bfUe80YYAvVXsKjOqLyf02wLzARlaBEPgF5rI64440nHmUm-GRNmCj2ujXr6NIbfLGDR=s157-p-k-rw",
-        "https://lh3.googleusercontent.com/grass-cs/ANxoTn2bYrlpX_fkYIPYN_84yk-DdiBHwtmFMVEYNg-7c_dzP0NBEknHhb6b1f5x_8ItfwmhAmHIrwUs0e983YxlocwFv4eLdyJy2HEmcv4r3Lc2uUpb-SdJRpzuO2mMUBOaFyzGcKKm=s157-p-k-rw"
+        "/carbon_mask_applied.png",
+        "/carbon_laser_clearing.png"
       ],
       source: "Google Maps"
     },
@@ -665,12 +667,11 @@ function App() {
       stars: 5,
       role: "1 review · 3 photos",
       date: "10 months ago",
-      text: "Mr Reehan..\nHad done a very good styling with a decent look\nVery much satisfied with the service\nMust visit",
-      services: ["Shampoo & conditioning", "Shaving", "Hairstyling"],
+      text: "Dr. Yamini and her team are highly professional. Had my Q-Switched Laser Toning done for uneven skin tone and pigmentation. Very much satisfied with the results and the professional approach. Must visit clinic for skin concerns.",
+      services: ["Laser Toning", "Pigmentation Treatment"],
       photos: [
-        "https://lh3.googleusercontent.com/grass-cs/ANxoTn3gAlWC-VwcQGLQZ8LqGUzgWQu_DAVtUUKWlm-goSmB4SnmOHIDQgRuY5-XSnd-o6z5MuskTcd0jIe0Wgny-WoDvJf4XlYPh_q-ObtX5hE5pLrNzW7ms5YsytL-V-FmUanYIz1Nv0hpLwya=s157-p-k-rw",
-        "https://lh3.googleusercontent.com/grass-cs/ANxoTn1cEc-XjP4-lo9vdxKppQbECGMlaQbH7Zml1HHuR0KGcUIp_rXCpJ9K2hG7aYSA3HuAAwetSMyMROwWC2RQ2R36TKF2ax2MEdVG9eogwYvp1MIfKITFVKSvypFvmEKtmi6xAmCLguhavcY=s157-p-k-rw",
-        "https://lh3.googleusercontent.com/grass-cs/ANxoTn2gGKGfxs4jLlpRSfNEp_nDmG-DBqIwMLp-vq5WkebKbMxNQ__KdXV-X8nbjNN4Nr1HzL5kAeDQHNFqnR6lgscU6Mh_fPICySrKAXtwk8V1kZ50i-cCUavImXsk-JTqmwMhfcZGXgT6Jx3m=s157-p-k-rw"
+        "/laser_toning_clinical.png",
+        "/pigment_after.png"
       ],
       source: "Google Maps"
     },
@@ -680,8 +681,12 @@ function App() {
       stars: 5,
       role: "3 reviews · 1 photo",
       date: "a year ago",
-      text: "Wonderful Facial Treatment,Super relaxing thinking about details such as Lighting,Soft music.....staff are well trained and professional...and my skin was silky soft afterwards 💕... Haircut and Beard was done Greatly.....\n\nWorthy for every single rupee..\n\nHere you can VIP Rooms...I took that one only.. I'm posting my review and Photo.... Definately Biggest salon in Andhra Pradesh",
-      services: ["Haircut", "Manicure", "Shampoo & conditioning", "Blowouts", "Shaving"],
+      text: "Wonderful Skin Rejuvenation Treatment! Super relaxing atmosphere. They are very detailed, explaining every step of the procedure. My skin felt silky soft, deeply hydrated, and glowing afterwards. Worthy for every single rupee. Definitely one of the best skin clinics in the region.",
+      services: ["Skin Rejuvenation", "Hydrafacial Glow"],
+      photos: [
+        "/skin_rejuvenation_clinical.png",
+        "/rejuvenation_result.png"
+      ],
       link: "https://maps.app.goo.gl/BTTjxbWby2cxPYUG9",
       source: "Google Maps"
     },
@@ -691,8 +696,12 @@ function App() {
       stars: 5,
       role: "4 reviews",
       date: "a year ago",
-      text: "Best experience in this salon me and my family have visited they doing kids haircut also and my kid was not crying at all....Very happy after the haircut..for kids and ladies best Salon in Vijayawada.....\n\nThey are offering VIP Rooms Also for Premium Customers and Kitty parties also there for Ladies package....",
-      services: ["Haircut", "Manicure", "Shampoo & conditioning", "Eyebrow beautification", "Blowouts", "Body waxing", "Hairstyling", "Pedicure", "Waxing", "Facials"],
+      text: "Excellent experience at Kairavam Skin Clinic. Visited for my wife's acne scar treatment. We had a consultation with Dr. Yamini who mapped out a clear 4-session plan. We are already seeing great improvement in skin texture. Very professional and friendly staff.",
+      services: ["Acne Scar Revision", "Skin Consultation"],
+      photos: [
+        "/acne_scar_clinical.png",
+        "/acne_after.png"
+      ],
       source: "Google Maps"
     },
     {
@@ -701,9 +710,11 @@ function App() {
       stars: 5,
       role: "Local Guide · 139 reviews · 201 photos",
       date: "a year ago",
-      text: "Amazing experience\nWorth every penny\n\nHad de tan treatment and shaving.\nThe staff is extremely professional and well versed in their crafts\n\nHighly recommended",
+      text: "Amazing experience at Kairavam. Had skin resurfacing and a medical de-tan treatment. The clinical staff is extremely professional, using advanced equipment and maintaining high hygiene standards. Highly recommended.",
+      services: ["Clinical Skin Resurfacing", "Medical De-Tan"],
       photos: [
-        "https://lh3.googleusercontent.com/grass-cs/ANxoTn2jT5PvI_Ir9lZc437dYgv9pWKt9aoMr2NZ9ECUl3JpR89v3_2aRUDjuJuZHaG99v2rYE-d6lxcdJpvVOVjkZmE3VV6WyfA4NYkze_D8oySNz0EV123fYPtLb6_8aWW1cZAJz3W=s157-p-k-rw"
+        "/skin_resurfacing_clinical.png",
+        "/resurfacing_result.png"
       ],
       source: "Google Maps"
     },
@@ -713,7 +724,8 @@ function App() {
       stars: 5,
       role: "1 review",
       date: "a month ago",
-      text: "I had a really nice experience at this place. The atmosphere was pleasant, the staff were friendly and helpful, and everything was well maintained. I truly enjoyed my time here and would definitely recommend it to others.",
+      text: "I had a really nice experience at Kairavam Skin Clinic. The clinic setup is modern, hygienic, and comforting. The dermatologists and therapists are very friendly and patient in answering all queries. I highly recommend them for any laser skin treatments.",
+      services: ["Laser Treatment Consultation"],
       source: "Google Maps"
     },
     {
@@ -722,7 +734,8 @@ function App() {
       stars: 5,
       role: "Local Guide · 7 reviews · 34 photos",
       date: "10 months ago",
-      text: "Recently visited Kairavam Hair Saloon and was impressed from start to finish. The ambience is modern, clean, and relaxing & also a place where you instantly feel comfortable. The service was attentive and professional, with the staff ensuring every detail was taken care of. Pricing is reasonable for the quality, and the friendly team makes you feel like a valued guest. Their membership plan is genuinely worth it, offering great savings and perks. I especially appreciated the free, expert guidance on hair care, which felt personalised and genuinely helpful. Definitely a must visit place.",
+      text: "Recently visited Kairavam Skin Clinic and was impressed from start to finish. The clinic ambience is modern, clean, and relaxing. The laser treatment service was precise and professional. Their packages are genuine and worth it. I appreciated the free, expert skin-care guidance post-session.",
+      services: ["Skin Resurfacing", "Laser Consultation"],
       source: "Google Maps"
     },
     {
@@ -731,7 +744,8 @@ function App() {
       stars: 5,
       role: "7 reviews",
       date: "10 months ago",
-      text: "Really good service! They did my eyebrows very nicely, waxing was smooth, and the hair spa made my hair feel soft and healthy. The place looks nice and has a relaxing vibe. I liked it a lot.\nHighly recommend!",
+      text: "Really good skin rejuvenation service! The hydration treatment was very soothing, and the clinical therapist made the process smooth and comfortable. My skin looks refreshed and glowing. Highly recommend!",
+      services: ["Skin Rejuvenation", "Dermal Hydration"],
       source: "Google Maps"
     },
     {
@@ -740,8 +754,8 @@ function App() {
       stars: 5,
       role: "1 review · 1 photo",
       date: "a year ago",
-      text: "Services are next level and Hospitality is another next level...They are greeting customers in a Good way....If any problem is there they are telling us before the service then they are doing the Services...",
-      services: ["Haircut", "Manicure", "Shampoo & conditioning", "Pedicure", "Online beauty salon booking"],
+      text: "Clinical services are next level and hospitality is excellent. They greet you warmly and explain the pre/post-procedure guidelines in detail. Very transparent and professional skin clinic.",
+      services: ["Consultation & Glow Treatment"],
       source: "Google Maps"
     },
     {
@@ -750,8 +764,11 @@ function App() {
       stars: 5,
       role: "2 reviews",
       date: "a year ago",
-      text: "Recently, I have undergone hair spa and hair cut service. It was good and done by Sameer. The ambience is nice. One of the premium salons in vijayawada.",
-      services: ["Spa services"],
+      text: "Recently, I have undergone a Carbon Laser Peel service. It was done under the guidance of Dr. Yamini. The clinical suite is hygienic and the equipment is state-of-the-art. One of the premium skin clinics in Vijayawada.",
+      services: ["Carbon Laser Peel"],
+      photos: [
+        "/carbon_laser_clearing.png"
+      ],
       source: "Google Maps"
     }
   ]
@@ -871,6 +888,52 @@ function App() {
   const [tlCard5Ref, tlCard5In] = useInView(0.2)
   const [tlCard6Ref, tlCard6In] = useInView(0.2)
 
+  // Recurring Exclusive Offers Modal Popup Trigger Logic
+  useEffect(() => {
+    let initialTimer = null
+    let intervalTimer = null
+
+    const showPopup = () => {
+      setIsOfferModalOpen(true)
+    }
+
+    const startTimers = () => {
+      // Remove listeners so they don't fire multiple times
+      window.removeEventListener('mousemove', handleActivity)
+      window.removeEventListener('mousedown', handleActivity)
+      window.removeEventListener('scroll', handleActivity)
+      window.removeEventListener('keypress', handleActivity)
+      window.removeEventListener('touchstart', handleActivity)
+
+      // Show after 10 seconds
+      initialTimer = setTimeout(showPopup, 10000)
+
+      // Show every 5 minutes recurringly
+      intervalTimer = setInterval(showPopup, 300000)
+    }
+
+    const handleActivity = () => {
+      startTimers()
+    }
+
+    // Listen for any user interaction
+    window.addEventListener('mousemove', handleActivity)
+    window.addEventListener('mousedown', handleActivity)
+    window.addEventListener('scroll', handleActivity)
+    window.addEventListener('keypress', handleActivity)
+    window.addEventListener('touchstart', handleActivity)
+
+    return () => {
+      window.removeEventListener('mousemove', handleActivity)
+      window.removeEventListener('mousedown', handleActivity)
+      window.removeEventListener('scroll', handleActivity)
+      window.removeEventListener('keypress', handleActivity)
+      window.removeEventListener('touchstart', handleActivity)
+      if (initialTimer) clearTimeout(initialTimer)
+      if (intervalTimer) clearInterval(intervalTimer)
+    }
+  }, [])
+
   const handlePrevTreatment = () => {
     setActiveTreatmentIndex((prev) => (prev === 0 ? filteredTreatments.length - 1 : prev - 1))
   }
@@ -901,7 +964,7 @@ function App() {
             <img
               src="/kairavamfinallogo.png"
               alt="Kairavam Logo"
-              style={{ height: '52px', objectFit: 'contain' }}
+              style={{ height: '80px', objectFit: 'contain' }}
             />
           </a>
 
@@ -1223,8 +1286,7 @@ function App() {
       </section>
 
       {/* MEET DR. YAMINI */}
-      <section ref={doctorRef} id="doctor" className="section-padding" style={{ background: '#ffffff', borderBottom: '1px solid var(--color-border-primary)', position: 'relative', overflow: 'hidden' }}>
-        <img src="/leaves_6.png" className="floating-asset" style={{ top: '8%', right: '3%', width: '100px', opacity: 0.08 }} alt="" />
+      <section ref={doctorRef} id="doctor" className="section-padding" style={{ background: 'var(--color-bg-main)', borderBottom: '1px solid var(--color-border-primary)', position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="grid2" style={{ alignItems: 'center', gap: '50px' }}>
             <div className="hero-kv-image-frame" style={{ maxWidth: '420px', margin: '0 auto' }}>
@@ -1236,21 +1298,21 @@ function App() {
             <div className="col" style={{ gap: '20px' }}>
               <span className="section-subtitle">Meet Your Aesthetic Specialist</span>
               <h2 className="section-title" style={{ marginBottom: '4px' }}>Yamini Kiran Pasupuleti</h2>
-              <p style={{ fontSize: '16px', color: 'var(--color-theme-secondary)', fontWeight: '500', margin: '0 0 12px' }}>Senior Cosmetologist & Aesthetic Expert</p>
+              <p style={{ fontSize: '16px', color: 'var(--color-theme-primary)', fontWeight: '500', margin: '0 0 12px' }}>Senior Cosmetologist & Aesthetic Expert</p>
               <p className="section-desc" style={{ margin: '0 0 8px', maxWidth: '100%', fontSize: '15px' }}>
                 With over a decade of experience in aesthetic skincare and cosmetic treatments, Yamini specializes in advanced laser treatments, skin rejuvenation, and personalized beauty solutions. Her client-focused approach helps individuals achieve healthy, radiant, and natural-looking results tailored to their unique skin concerns.
               </p>
               <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', marginTop: '8px' }}>
                 <div className="col" style={{ gap: '2px' }}>
-                  <span style={{ fontSize: '24px', fontWeight: '700', color: 'var(--color-theme-secondary)', fontFamily: 'var(--font-serif)' }}>10+</span>
+                  <span style={{ fontSize: '24px', fontWeight: '700', color: 'var(--color-theme-primary)', fontFamily: 'var(--font-serif)' }}>10+</span>
                   <span style={{ fontSize: '11px', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Years Experience</span>
                 </div>
                 <div className="col" style={{ gap: '2px' }}>
-                  <span style={{ fontSize: '24px', fontWeight: '700', color: 'var(--color-theme-secondary)', fontFamily: 'var(--font-serif)' }}>15K+</span>
+                  <span style={{ fontSize: '24px', fontWeight: '700', color: 'var(--color-theme-primary)', fontFamily: 'var(--font-serif)' }}>15K+</span>
                   <span style={{ fontSize: '11px', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Happy Clients</span>
                 </div>
                 <div className="col" style={{ gap: '2px' }}>
-                  <span style={{ fontSize: '24px', fontWeight: '700', color: 'var(--color-theme-secondary)', fontFamily: 'var(--font-serif)' }}>50+</span>
+                  <span style={{ fontSize: '24px', fontWeight: '700', color: 'var(--color-theme-primary)', fontFamily: 'var(--font-serif)' }}>50+</span>
                   <span style={{ fontSize: '11px', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Treatments Offered</span>
                 </div>
               </div>
@@ -1364,7 +1426,7 @@ function App() {
       </section>
 
       {/* WHY CHOOSE KAIRAVAM SECTION */}
-      <section className="section-padding" style={{ background: '#ffffff', borderBottom: '1px solid var(--color-border-primary)', overflow: 'hidden' }}>
+      <section className="section-padding" style={{ background: 'var(--color-bg-main)', borderBottom: '1px solid var(--color-border-primary)', overflow: 'hidden' }}>
         <div className="container">
           <div className="text-center" style={{ marginBottom: '50px' }}>
             <span className="section-subtitle">Why Choose Kairavam</span>
@@ -1399,7 +1461,7 @@ function App() {
       <section ref={treatmentsRef} id="treatments" className="section-padding" style={{
         borderBottom: '1px solid var(--color-border-primary)',
         position: 'relative',
-        background: 'linear-gradient(180deg, var(--color-bg-main) 0%, rgba(244, 237, 230, 0.4) 50%, var(--color-bg-main) 100%)'
+        background: 'var(--color-bg-main)'
       }}>
         {/* Ambient Glow Orbs */}
         <div className="ambient-glow-circle" style={{
@@ -1424,8 +1486,6 @@ function App() {
           filter: 'blur(60px)',
           zIndex: 0
         }} />
-
-        <img src="/leaves_6.png" className="floating-asset" style={{ bottom: '10%', right: '3%', width: '90px', opacity: 0.12 }} alt="" />
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="text-center">
@@ -1485,7 +1545,7 @@ function App() {
                     key={t.id}
                     className={`carousel-slide-card luxury-spa-card ${positionClass}`}
                     onClick={() => setActiveTreatmentIndex(idx)}
-                    style={{ gap: '16px', background: '#ffffff' }}
+                    style={{ gap: '16px', background: 'var(--color-bg-card)' }}
                   >
                     {/* Zoom Image Container */}
                     <div className="zoom-container" style={{ height: '190px', border: '1px solid var(--color-border-primary)', position: 'relative' }}>
@@ -1562,7 +1622,7 @@ function App() {
       </section>
 
       {/* 5. TREATMENT TIMELINE DEEP DIVE */}
-      <section className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: '#ffffff' }}>
+      <section className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: 'var(--color-bg-main)' }}>
         <div className="container">
           <div className="text-center">
             <span className="section-subtitle">Clinical Deep Dive</span>
@@ -1602,8 +1662,8 @@ function App() {
                   </div>
                 </div>
                 <div className="media-grid">
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/carbonpeel1.jpg')` }}></div><span className="media-caption">Carbon Mask Applied</span></div>
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/carbon-peel.jpg')` }}></div><span className="media-caption">Laser Clearing Glow</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/carbon_mask_applied.png')` }}></div><span className="media-caption">Carbon Mask Applied</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/carbon_laser_clearing.png')` }}></div><span className="media-caption">Laser Clearing Glow</span></div>
                 </div>
                 <div className="progress-card">
                   <span className="progress-title">Procedure Success Markers</span>
@@ -1693,7 +1753,7 @@ function App() {
                 </div>
                 <div className="media-grid">
                   <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/skin_resurfacing_clinical.png')` }}></div><span className="media-caption">Resurfacing Session</span></div>
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/after_face.png')` }}></div><span className="media-caption">Skin Renewal Result</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/resurfacing_result.png')` }}></div><span className="media-caption">Skin Renewal Result</span></div>
                 </div>
                 <div className="progress-card">
                   <span className="progress-title">Procedure Success Markers</span>
@@ -1784,7 +1844,7 @@ function App() {
                 </div>
                 <div className="media-grid">
                   <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/skin_rejuvenation_clinical.png')` }}></div><span className="media-caption">Rejuvenation Session</span></div>
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/after_face.png')` }}></div><span className="media-caption">Radiance Glow Result</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/rejuvenation_result.png')` }}></div><span className="media-caption">Radiance Glow Result</span></div>
                 </div>
                 <div className="progress-card">
                   <span className="progress-title">Procedure Success Markers</span>
@@ -1828,8 +1888,8 @@ function App() {
                   </div>
                 </div>
                 <div className="media-grid">
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/carbonpeel1.jpg')` }}></div><span className="media-caption">Carbon Peel Session</span></div>
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/carbon-peel.jpg')` }}></div><span className="media-caption">Pore Refinement</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/open_pore_clinical.png')` }}></div><span className="media-caption">Pore Tightening Session</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/open_pore_result.png')` }}></div><span className="media-caption">Refined Pores Result</span></div>
                 </div>
                 <div className="progress-card">
                   <span className="progress-title">Procedure Success Markers</span>
@@ -1851,8 +1911,6 @@ function App() {
 
       {/* 6. Interactive BEFORE/AFTER COMPARISON PANEL */}
       <section id="before-after" className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', position: 'relative' }}>
-        <img src="/leaves_14.png" className="floating-asset" style={{ top: '8%', left: '3%', width: '100px', opacity: 0.12 }} alt="" />
-
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="grid32" style={{ alignItems: 'center' }}>
 
@@ -1942,7 +2000,7 @@ function App() {
               </div>
 
               {/* Patient Testimonial Review */}
-              <div className="luxury-spa-card" style={{ gap: '14px', background: '#ffffff' }}>
+              <div className="luxury-spa-card" style={{ gap: '14px', background: 'var(--color-bg-card)' }}>
                 <div className="row" style={{ justifyContent: 'space-between' }}>
                   <div className="row" style={{ gap: '8px' }}>
                     <div style={{
@@ -1991,7 +2049,7 @@ function App() {
       </section>
 
       {/* 7. TECHNOLOGY SHOWCASE */}
-      <section id="technology" className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: '#ffffff' }}>
+      <section id="technology" className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: 'var(--color-bg-main)' }}>
         <div className="container">
           <div className="text-center">
             <span className="section-subtitle">Clinical Infrastructure</span>
@@ -2010,7 +2068,7 @@ function App() {
                   width: '40px',
                   height: '40px',
                   borderRadius: '10px',
-                  background: '#ffffff',
+                  background: 'var(--color-bg-card)',
                   border: '1px solid var(--color-theme-primary)',
                   display: 'flex',
                   alignItems: 'center',
@@ -2185,9 +2243,7 @@ function App() {
       </section>
 
       {/* 9. JOURNEY STEPS (How it Works) */}
-      <section className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: '#ffffff', position: 'relative' }}>
-        <img src="/flower_2_7.png" className="floating-asset" style={{ top: '6%', right: '3%', width: '80px', opacity: 0.12 }} alt="" />
-
+      <section className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: 'var(--color-bg-main)', position: 'relative' }}>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="text-center">
             <span className="section-subtitle">Your Aesthetic Roadmap</span>
@@ -2287,10 +2343,7 @@ function App() {
       </section>
 
       {/* 10. REAL-TIME AI ANALYSIS WIDGET */}
-      <section ref={quizRef} className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', position: 'relative', background: 'linear-gradient(160deg, #fafaf8 0%, #f5f3ee 100%)' }}>
-        <img src="/flower_2_6.png" className="floating-asset" style={{ bottom: '5%', left: '4%', width: '120px', opacity: 0.10 }} alt="" />
-        <img src="/flower_2_6.png" className="floating-asset" style={{ top: '8%', right: '3%', width: '90px', opacity: 0.08, transform: 'scaleX(-1) rotate(30deg)' }} alt="" />
-
+      <section ref={quizRef} className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', position: 'relative', background: 'var(--color-bg-main)' }}>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="text-center">
             <span className="section-subtitle" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
@@ -2310,7 +2363,7 @@ function App() {
           </div>
 
           <div style={{ width: '100%' }}>
-            <div className="quiz-widget" style={{ background: '#ffffff', border: '1px solid rgba(183,156,97,0.18)', boxShadow: '0 12px 40px rgba(0,0,0,0.08)', borderRadius: '20px' }}>
+            <div className="quiz-widget" style={{ background: 'var(--color-bg-card)', border: '1px solid var(--color-border-primary)', boxShadow: 'var(--shadow-premium)', borderRadius: '20px' }}>
 
               {/* Language Toggle + Stepper Row */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '8px' }}>
@@ -2667,7 +2720,7 @@ function App() {
       </section>
 
       {/* 11. PRICING tiered PACKAGES TABLE */}
-      <section id="pricing" className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: '#ffffff' }}>
+      <section id="pricing" className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: 'var(--color-bg-main)' }}>
         <div className="container">
           <div className="text-center">
             <span className="section-subtitle">Transparent Costing</span>
@@ -2680,7 +2733,7 @@ function App() {
           <div className="grid3">
 
             {/* Tier 1 */}
-            <div className="luxury-spa-card" style={{ gap: '20px', background: 'var(--color-bg-main)' }}>
+            <div className="luxury-spa-card" style={{ gap: '20px', background: 'var(--color-bg-card)' }}>
               <div className="col" style={{ gap: '4px' }}>
                 <span className="badge-premium" style={{ alignSelf: 'flex-start' }}>Tier 01</span>
                 <h3 style={{ fontSize: '22px', color: 'var(--color-text-primary)', fontWeight: '600' }}>Essential Rejuvenation</h3>
@@ -2703,7 +2756,7 @@ function App() {
               <button onClick={() => {
                 setFormData(prev => ({ ...prev, treatment: 'Laser Toning' }))
                 scrollToSection(bookingFormRef)
-              }} className="btn-outline" style={{ marginTop: 'auto', display: 'block', width: '100%', background: '#ffffff' }}>
+              }} className="btn-outline" style={{ marginTop: 'auto', display: 'block', width: '100%', background: 'transparent' }}>
                 Select Essential Plan
               </button>
             </div>
@@ -2712,15 +2765,15 @@ function App() {
             <div className="luxury-spa-card premium-card-highlight" style={{ gap: '20px' }}>
               <div className="col" style={{ gap: '4px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span className="badge-premium" style={{ border: '1px solid var(--color-theme-secondary)', background: 'var(--color-theme-secondary)', color: '#ffffff' }}>Tier 02</span>
-                  <span className="badge-premium" style={{ fontSize: '9px', background: '#ffffff', color: 'var(--color-theme-secondary)' }}>Most Popular</span>
+                  <span className="badge-premium" style={{ border: '1px solid var(--color-theme-primary)', background: 'var(--color-theme-primary)', color: 'var(--color-bg-card)' }}>Tier 02</span>
+                  <span className="badge-premium" style={{ fontSize: '9px', background: 'var(--color-theme-light)', color: 'var(--color-bg-card)' }}>Most Popular</span>
                 </div>
                 <h3 style={{ fontSize: '22px', color: 'var(--color-text-primary)', fontWeight: '600' }}>Advanced Transform</h3>
                 <p style={{ fontSize: '12px', color: 'var(--color-text-muted)' }}>Flagship laser and skin treatments</p>
               </div>
 
               <div style={{ borderTop: '1px solid var(--color-theme-primary)', padding: '16px 0' }}>
-                <span style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--color-theme-secondary)', fontFamily: 'var(--font-serif)' }}>₹7,500</span>
+                <span style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--color-text-primary)', fontFamily: 'var(--font-serif)' }}>₹7,500</span>
                 <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}> / session</span>
               </div>
 
@@ -2742,7 +2795,7 @@ function App() {
             </div>
 
             {/* Tier 3 */}
-            <div className="luxury-spa-card" style={{ gap: '20px', background: 'var(--color-bg-main)' }}>
+            <div className="luxury-spa-card" style={{ gap: '20px', background: 'var(--color-bg-card)' }}>
               <div className="col" style={{ gap: '4px' }}>
                 <span className="badge-premium" style={{ alignSelf: 'flex-start' }}>Tier 03</span>
                 <h3 style={{ fontSize: '22px', color: 'var(--color-text-primary)', fontWeight: '600' }}>Ultimate Radiance</h3>
@@ -2766,7 +2819,7 @@ function App() {
               <button onClick={() => {
                 setFormData(prev => ({ ...prev, treatment: 'Skin Resurfacing' }))
                 scrollToSection(bookingFormRef)
-              }} className="btn-outline" style={{ marginTop: 'auto', display: 'block', width: '100%', background: '#ffffff' }}>
+              }} className="btn-outline" style={{ marginTop: 'auto', display: 'block', width: '100%', background: 'transparent' }}>
                 Select Ultimate Plan
               </button>
             </div>
@@ -2776,8 +2829,8 @@ function App() {
       </section>
 
       {/* 11.5 GOOGLE REVIEWS SECTION */}
-      <section id="reviews" className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: '#ffffff' }}>
-        <div className="container">
+      <section id="reviews" className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: 'var(--color-bg-main)' }}>
+        <div className="container" style={{ maxWidth: '1400px' }}>
 
           {/* Header Row: Title & Google Badge */}
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '24px', marginBottom: '48px', borderBottom: '1.5px solid var(--color-border-primary)', paddingBottom: '32px' }}>
@@ -2802,7 +2855,7 @@ function App() {
               minWidth: '280px'
             }}>
               <div style={{
-                background: '#ffffff',
+                background: 'var(--color-bg-card)',
                 width: '44px',
                 height: '44px',
                 borderRadius: '10px',
@@ -2858,7 +2911,7 @@ function App() {
                   <div
                     key={idx}
                     className="review-card-scroll-item luxury-spa-card"
-                    style={{ gap: '12px', background: '#ffffff', justifyContent: 'space-between' }}
+                    style={{ gap: '12px', background: 'var(--color-bg-card)', justifyContent: 'space-between' }}
                   >
                     <div className="col" style={{ gap: '12px' }}>
                       {/* Header Row: Avatar, Name, Google Icon */}
@@ -2975,7 +3028,7 @@ function App() {
                           )}
                           {review.hairType && (
                             <div>
-                              <span style={{ fontWeight: '700', color: 'var(--color-text-primary)' }}>Hair type: </span>
+                              <span style={{ fontWeight: '700', color: 'var(--color-text-primary)' }}>Skin/Hair type: </span>
                               <span style={{ color: 'var(--color-text-secondary)' }}>{review.hairType}</span>
                             </div>
                           )}
@@ -3044,7 +3097,7 @@ function App() {
       </section>
 
       {/* INSTAGRAM REELS SECTION */}
-      <section className="section-padding instagram-section" style={{ borderBottom: '1px solid var(--color-border-primary)', background: '#ffffff', position: 'relative' }}>
+      <section className="section-padding instagram-section" style={{ borderBottom: '1px solid var(--color-border-primary)', background: 'var(--color-bg-main)', position: 'relative' }}>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
 
           {/* Instagram Profile Header */}
@@ -3205,7 +3258,7 @@ function App() {
       </section>
 
       {/* 14. BOOKING FORM & CONTACT CARD */}
-      <section ref={bookingFormRef} id="contact" className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: '#ffffff' }}>
+      <section ref={bookingFormRef} id="contact" className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: 'var(--color-bg-main)' }}>
         <div className="container">
           <div className="text-center" style={{ marginBottom: '32px' }}>
             <span className="section-subtitle">Contact Us</span>
@@ -3386,7 +3439,7 @@ function App() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '10px',
-                background: '#ffffff',
+                background: 'var(--color-bg-card)',
                 border: '1px solid var(--color-border-primary)',
                 borderRadius: 'var(--border-radius-lg)',
                 padding: '20px 24px',
@@ -3435,7 +3488,7 @@ function App() {
 
       {/* 14. FOOTER */}
       <footer style={{
-        background: '#ffffff',
+        background: 'var(--color-bg-card)',
         borderTop: '1px solid var(--color-border-primary)',
         padding: '60px 0 20px',
         color: 'var(--color-text-secondary)'
@@ -3455,7 +3508,7 @@ function App() {
               <img
                 src="/kairavamfinallogo.png"
                 alt="Kairavam Logo"
-                style={{ height: '48px', objectFit: 'contain', alignSelf: 'flex-start', marginBottom: '4px' }}
+                style={{ height: '76px', objectFit: 'contain', alignSelf: 'flex-start', marginBottom: '4px' }}
               />
               <p style={{ fontSize: '12px', lineHeight: '1.6' }}>
                 Kairavam is Vijayawada's premier advanced skin and laser clinic. Combining expert-led cosmetic medicine with FDA-approved laser technology, we craft customized treatments that enhance your natural beauty safely and effectively.
@@ -3637,6 +3690,43 @@ function App() {
             }}>
               Click anywhere outside to close
             </span>
+          </div>
+        </div>
+      )}
+
+      {/* EXCLUSIVE OFFERS RECURRING MODAL POPUP */}
+      {isOfferModalOpen && (
+        <div className="offer-modal-overlay" onClick={() => setIsOfferModalOpen(false)}>
+          <div className="offer-modal-card" onClick={(e) => e.stopPropagation()}>
+            <button className="offer-modal-close" onClick={() => setIsOfferModalOpen(false)} aria-label="Close modal">
+              <X size={18} />
+            </button>
+            <div className="offer-modal-icon-circle">
+              <Sparkles size={26} />
+            </div>
+            <h2 className="offer-modal-title">Wait! Don't Miss Your Chance</h2>
+            <p className="offer-modal-desc">
+              Get exclusive offers on selected treatments. Limited time only!
+            </p>
+            <button 
+              className="offer-modal-btn-book" 
+              onClick={() => {
+                setIsOfferModalOpen(false)
+                scrollToSection(bookingFormRef)
+              }}
+            >
+              Book Consultation Now
+            </button>
+            <a 
+              href="https://wa.me/918478060606?text=Hi+Kairavam+Clinic%2C+I+saw+your+exclusive+offer+popup+on+the+website+and+would+like+to+know+more+about+the+selected+treatment+offers."
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="offer-modal-btn-whatsapp"
+            >
+              <MessageCircle size={18} style={{ marginRight: '8px', fill: 'currentColor' }} />
+              WhatsApp for Offer
+            </a>
+            <span className="offer-modal-footer-text">Limited appointments available</span>
           </div>
         </div>
       )}
