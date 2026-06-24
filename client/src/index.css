@@ -4,8 +4,8 @@
 
 :root {
   /* Rich Aesthetics: Luxurious dark forest green background & metallic gold accents matching the logo badge theme */
-  --color-bg-main: #3a4e42;
-  /* Dominant logo green background */
+  --color-bg-main: transparent;
+  /* Dominant logo green background - transparent to let animated body show */
   --color-bg-card: #14251e;
   /* Deep forest green card backgrounds */
   --color-bg-card-hl: #1c3229;
@@ -63,17 +63,16 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--color-bg-main);
+  background-color: #14251e;
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background-color: var(--color-bg-main);
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(197, 139, 112, 0.04) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(158, 93, 62, 0.03) 0%, transparent 45%);
+  background: linear-gradient(135deg, #14251e 0%, #3a4e42 30%, #1c3229 70%, #253b30 100%);
+  background-size: 400% 400%;
+  animation: gradientBg 18s ease infinite;
 }
 
 /* Scrollbar Customization */
@@ -82,7 +81,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-main);
+  background: #14251e;
 }
 
 ::-webkit-scrollbar-thumb {
