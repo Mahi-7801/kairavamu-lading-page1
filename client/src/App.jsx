@@ -655,10 +655,6 @@ function App() {
       services: ["Carbon Laser Peel", "Acne Care"],
       requestedStyle: "Pico Hollywood Carbon Laser & Skin Resurfacing",
       hairType: "Skin type: Acne-prone and oily",
-      photos: [
-        "/carbon_mask_applied.png",
-        "/carbon_laser_clearing.png"
-      ],
       source: "Google Maps"
     },
     {
@@ -669,10 +665,6 @@ function App() {
       date: "10 months ago",
       text: "Dr. Yamini and her team are highly professional. Had my Q-Switched Laser Toning done for uneven skin tone and pigmentation. Very much satisfied with the results and the professional approach. Must visit clinic for skin concerns.",
       services: ["Laser Toning", "Pigmentation Treatment"],
-      photos: [
-        "/laser_toning_clinical.png",
-        "/pigment_after.png"
-      ],
       source: "Google Maps"
     },
     {
@@ -683,10 +675,6 @@ function App() {
       date: "a year ago",
       text: "Wonderful Skin Rejuvenation Treatment! Super relaxing atmosphere. They are very detailed, explaining every step of the procedure. My skin felt silky soft, deeply hydrated, and glowing afterwards. Worthy for every single rupee. Definitely one of the best skin clinics in the region.",
       services: ["Skin Rejuvenation", "Hydrafacial Glow"],
-      photos: [
-        "/skin_rejuvenation_clinical.png",
-        "/rejuvenation_result.png"
-      ],
       link: "https://maps.app.goo.gl/BTTjxbWby2cxPYUG9",
       source: "Google Maps"
     },
@@ -698,10 +686,6 @@ function App() {
       date: "a year ago",
       text: "Excellent experience at Kairavam Skin Clinic. Visited for my wife's acne scar treatment. We had a consultation with Dr. Yamini who mapped out a clear 4-session plan. We are already seeing great improvement in skin texture. Very professional and friendly staff.",
       services: ["Acne Scar Revision", "Skin Consultation"],
-      photos: [
-        "/acne_scar_clinical.png",
-        "/acne_after.png"
-      ],
       source: "Google Maps"
     },
     {
@@ -712,10 +696,6 @@ function App() {
       date: "a year ago",
       text: "Amazing experience at Kairavam. Had skin resurfacing and a medical de-tan treatment. The clinical staff is extremely professional, using advanced equipment and maintaining high hygiene standards. Highly recommended.",
       services: ["Clinical Skin Resurfacing", "Medical De-Tan"],
-      photos: [
-        "/skin_resurfacing_clinical.png",
-        "/resurfacing_result.png"
-      ],
       source: "Google Maps"
     },
     {
@@ -766,9 +746,6 @@ function App() {
       date: "a year ago",
       text: "Recently, I have undergone a Carbon Laser Peel service. It was done under the guidance of Dr. Yamini. The clinical suite is hygienic and the equipment is state-of-the-art. One of the premium skin clinics in Vijayawada.",
       services: ["Carbon Laser Peel"],
-      photos: [
-        "/carbon_laser_clearing.png"
-      ],
       source: "Google Maps"
     }
   ]
@@ -1127,20 +1104,20 @@ function App() {
             <div className="hero-kv-text">
               <div className="hero-kv-subtitle" style={{ animation: 'heroKvFadeIn 0.7s ease forwards' }}>
                 <span className="hero-kv-subtitle-bar"></span>
-                Kairavam Advanced Skin &amp; Laser Clinic
+                Kairavam Advanced Skin & Laser Clinic
               </div>
 
               <h1 className="hero-kv-title">
                 <span className="hero-kv-title-line1" style={{ animation: 'heroKvFadeIn 0.7s ease forwards 0.15s' }}>
-                  Advanced Skin &amp; Laser Treatments
+                  Advanced Skin & Laser Treatments
                 </span>
                 <span className="hero-kv-title-line2" style={{ animation: 'heroKvFadeIn 0.7s ease forwards 0.3s' }}>
-                  for Clear, Healthy &amp; <em>Glowing Skin</em>
+                  for Clear, Healthy & <em>Glowing Skin</em>
                 </span>
               </h1>
 
               <p className="hero-kv-desc" style={{ animation: 'heroKvFadeIn 0.7s ease forwards 0.4s', fontSize: '14px', marginTop: '12px' }}>
-                Expert Skin &amp; Laser Treatments for Acne Scars, Pigmentation, Open Pores, Skin Resurfacing &amp; Rejuvenation
+                Expert Skin & Laser Treatments for Acne Scars, Pigmentation, Open Pores, Skin Resurfacing & Rejuvenation
               </p>
 
               <div className="hero-kv-offer-badge" style={{ animation: 'heroKvFadeIn 0.7s ease forwards 0.6s', marginTop: '16px', marginBottom: '16px' }}>
@@ -3037,40 +3014,7 @@ function App() {
                         </div>
                       )}
 
-                      {/* Photo Attachments Grid */}
-                      {review.photos && review.photos.length > 0 && (
-                        <div className="row" style={{ gap: '8px', flexWrap: 'wrap', marginTop: '4px' }}>
-                          {review.photos.map((photo, pIdx) => (
-                            <div
-                              key={pIdx}
-                              className="review-photo-container"
-                              onClick={() => setLightboxImage(photo)}
-                              style={{
-                                width: '52px',
-                                height: '52px',
-                                borderRadius: '6px',
-                                overflow: 'hidden',
-                                cursor: 'pointer',
-                                border: '1.5px solid var(--color-border-primary)',
-                                boxShadow: '0 2px 6px rgba(0,0,0,0.03)'
-                              }}
-                            >
-                              <img
-                                src={photo}
-                                alt={`Review attach ${pIdx + 1}`}
-                                referrerPolicy="no-referrer"
-                                style={{
-                                  width: '100%',
-                                  height: '100%',
-                                  objectFit: 'cover',
-                                  transition: 'transform 0.3s ease'
-                                }}
-                                className="review-photo-img"
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      )}
+
                     </div>
 
                     {/* Footer Meta */}
@@ -3078,16 +3022,7 @@ function App() {
                       <span className="badge-verified" style={{ fontSize: '8px', padding: '2px 8px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
                         <CheckCircle size={8} /> Verified Reviewer
                       </span>
-                      {review.link && (
-                        <a
-                          href={review.link}
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{ fontSize: '10px', fontWeight: '700', color: 'var(--color-theme-primary)', textDecoration: 'underline' }}
-                        >
-                          View on Google Maps
-                        </a>
-                      )}
+
                     </div>
                   </div>
                 );
@@ -3265,7 +3200,7 @@ function App() {
           <div className="text-center" style={{ marginBottom: '32px' }}>
             <span className="section-subtitle">Contact Us</span>
             <h2 className="section-title">Book Your <span>Appointment Today</span></h2>
-            <p className="section-desc">Get Expert Skin Consultation &amp; Exclusive Offers</p>
+            <p className="section-desc">Get Expert Skin Consultation & Exclusive Offers</p>
           </div>
           <div className="grid2" style={{ gap: '48px', alignItems: 'stretch' }}>
 
@@ -3275,7 +3210,7 @@ function App() {
                 <span className="badge-premium" style={{ alignSelf: 'flex-start' }}>Priority Booking</span>
                 <h3 style={{ fontSize: '24px', color: 'var(--color-text-primary)', fontFamily: 'var(--font-serif)', fontWeight: '600' }}>Book Your Appointment Today</h3>
                 <p style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>
-                  Get Expert Skin Consultation &amp; Exclusive Offers
+                  Get Expert Skin Consultation & Exclusive Offers
                 </p>
                 <p style={{ fontSize: '11px', color: 'var(--color-theme-secondary)', fontWeight: '600' }}>
                   Up To 40% OFF On Selected Treatments &bull; Limited Slots Available
@@ -3412,28 +3347,11 @@ function App() {
               )}
             </div>
 
-            {/* Right Column: Contact info & map graphic */}
+            {/* Right Column: Contact info */}
             <div className="col" style={{ gap: '20px', justifyContent: 'space-between' }}>
-              {/* Google Maps Embed with Animation */}
-              <div className="map-wrapper animate-map">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.426187571828!2d80.64465607460865!3d16.504568027637607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fb1531f3efc5%3A0xf99a9d5c3d3ccae6!2sKairavam!5e0!3m2!1sen!2sin!4v1781679412808!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, borderRadius: 'var(--border-radius-lg)' }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Kairavam Clinic Location"
-                />
-                <div className="map-pin-overlay">
-                  <MapPin size={22} style={{ color: 'var(--color-theme-primary)' }} />
-                </div>
-              </div>
-
               {/* Clinic details card */}
               <div className="col" style={{ gap: '8px' }}>
-                <h3 style={{ fontSize: '16px', color: 'var(--color-text-primary)', fontWeight: '700' }}>Kairavam Advanced Skin &amp; Laser Clinic</h3>
+                <h3 style={{ fontSize: '16px', color: 'var(--color-text-primary)', fontWeight: '700' }}>Kairavam Advanced Skin & Laser Clinic</h3>
                 <p style={{ fontSize: '11px', color: 'var(--color-text-muted)', margin: 0 }}>Clinic Hours: 10:00 AM – 8:00 PM</p>
               </div>
               <div style={{
@@ -3576,7 +3494,7 @@ function App() {
             gap: '12px',
             color: 'var(--color-text-muted)'
           }}>
-            <span>© 2026 Kairavam Advanced Skin &amp; Laser Clinic. All rights reserved.</span>
+            <span>© 2026 Kairavam Advanced Skin & Laser Clinic. All rights reserved.</span>
             <a href="https://digitalverto.com/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#a5792d', fontWeight: '600', fontSize: '13px', letterSpacing: '1.5px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>Powered by Digital Verto <img src="/dv-logo.png" alt="DV Logo" style={{ height: '30px', width: 'auto', animation: 'dvHandWave 2s ease-in-out infinite', transformOrigin: 'center center' }} /></a>
             <div className="row" style={{ gap: '16px' }}>
               <span style={{ cursor: 'pointer' }}>Privacy Policy</span>
