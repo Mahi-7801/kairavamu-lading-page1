@@ -4261,7 +4261,7 @@ section[style*="background: var(--color-bg-main)"] * {
 /* Ensure content sits above dots overlay */
 .section-bg-green-anim .container,
 .section-bg-green-anim > div,
-.offer-modal-card > * {
+.offer-modal-card > *:not(.offer-modal-close) {
   position: relative;
   z-index: 1;
 }
