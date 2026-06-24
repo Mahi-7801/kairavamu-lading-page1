@@ -943,7 +943,7 @@ function App() {
   }
 
   return (
-    <div className="landing-page-root">
+    <div className="landing-page-root" style={{ background: '#f7f3eb', minHeight: '100vh' }}>
 
 
 
@@ -952,11 +952,11 @@ function App() {
         position: 'sticky',
         top: 0,
         zIndex: 90,
-        background: 'rgba(14, 28, 20, 0.45)',
-        backdropFilter: 'blur(22px)',
-        WebkitBackdropFilter: 'blur(22px)',
-        borderBottom: '1px solid rgba(192, 157, 87, 0.28)',
-        boxShadow: '0 4px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(192, 157, 87, 0.12)',
+        background: '#f7f3eb',
+        backdropFilter: 'blur(24px)',
+        WebkitBackdropFilter: 'blur(24px)',
+        borderBottom: '1px solid rgba(192, 157, 87, 0.30)',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.06), inset 0 -1px 0 rgba(192, 157, 87, 0.12)',
         padding: '12px 0',
         transition: 'var(--transition-smooth)'
       }}>
@@ -972,12 +972,12 @@ function App() {
 
           {/* Navigation Links - Desktop */}
           <nav className="desktop-nav" style={{ gap: '26px' }}>
-            <a href="#treatments" onClick={(e) => { e.preventDefault(); scrollToSection(treatmentsRef); }} style={{ fontSize: '13px', fontWeight: '500', textDecoration: 'none', color: 'var(--color-text-secondary)' }} className="nav-link-hover">Treatments</a>
-            <a href="#doctor" onClick={(e) => { e.preventDefault(); scrollToSection(doctorRef); }} style={{ fontSize: '13px', fontWeight: '500', textDecoration: 'none', color: 'var(--color-text-secondary)' }} className="nav-link-hover">Doctor</a>
-            <a href="#before-after" style={{ fontSize: '13px', fontWeight: '500', textDecoration: 'none', color: 'var(--color-text-secondary)' }} className="nav-link-hover">Before & After</a>
-            <a href="#reviews" style={{ fontSize: '13px', fontWeight: '500', textDecoration: 'none', color: 'var(--color-text-secondary)' }} className="nav-link-hover">Reviews</a>
-            <a href="#faq" style={{ fontSize: '13px', fontWeight: '500', textDecoration: 'none', color: 'var(--color-text-secondary)' }} className="nav-link-hover">FAQs</a>
-            <a href="#contact" style={{ fontSize: '13px', fontWeight: '500', textDecoration: 'none', color: 'var(--color-text-secondary)' }} className="nav-link-hover">Contact</a>
+            <a href="#treatments" onClick={(e) => { e.preventDefault(); scrollToSection(treatmentsRef); }} style={{ fontSize: '13px', fontWeight: '600', textDecoration: 'none', color: '#222222' }} className="nav-link-hover">Treatments</a>
+            <a href="#doctor" onClick={(e) => { e.preventDefault(); scrollToSection(doctorRef); }} style={{ fontSize: '13px', fontWeight: '600', textDecoration: 'none', color: '#222222' }} className="nav-link-hover">Doctor</a>
+            <a href="#before-after" style={{ fontSize: '13px', fontWeight: '600', textDecoration: 'none', color: '#222222' }} className="nav-link-hover">Before & After</a>
+            <a href="#reviews" style={{ fontSize: '13px', fontWeight: '600', textDecoration: 'none', color: '#222222' }} className="nav-link-hover">Reviews</a>
+            <a href="#faq" style={{ fontSize: '13px', fontWeight: '600', textDecoration: 'none', color: '#222222' }} className="nav-link-hover">FAQs</a>
+            <a href="#contact" style={{ fontSize: '13px', fontWeight: '600', textDecoration: 'none', color: '#222222' }} className="nav-link-hover">Contact</a>
           </nav>
 
           {/* Header Actions - Desktop */}
@@ -2408,7 +2408,7 @@ function App() {
                       {quizLang === 'te' ? 'మీకు ఏ సమస్య ఉంది?' : 'What concerns you most?'}
                     </span>
                   </div>
-                  <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)' }}>
+                  <p style={{ fontSize: '13px', color: 'var(--color-text-muted)' }}>
                     {quizLang === 'te'
                       ? 'మీ ప్రాధమిక సమస్యను ఎంచుకోండి. యమిని యొక్క నిర్ధారణ వ్యవస్థ దాన్ని అత్యుత్తమ చికిత్స ప్రోటోకాల్‌కు సరిపోల్చుతుంది.'
                       : "Select your primary aesthetic concern. Yamini's diagnostic system will match it to the ideal treatment protocol."}
@@ -2466,7 +2466,7 @@ function App() {
                   <div className="quiz-custom-input-wrap">
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
                       <MessageCircle size={14} style={{ color: 'var(--color-theme-primary)' }} />
-                      <span style={{ fontSize: '12px', fontWeight: '600', color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                      <span style={{ fontSize: '12px', fontWeight: '600', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                         {quizLang === 'te' ? 'లేదా మీ సమస్యను వివరించండి' : 'Or describe your concern in your own words'}
                       </span>
                     </div>
@@ -3449,7 +3449,7 @@ function App() {
               }}>
                 <div className="row" style={{ gap: '10px', alignItems: 'flex-start' }}>
                   <MapPin size={15} style={{ color: 'var(--color-theme-primary)', flexShrink: 0, marginTop: '2px' }} />
-                  <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)', lineHeight: '1.4' }}>
+                  <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)', lineHeight: '1.6' }}>
                     Fortune Murali Park Road,<br />
                     Above Apollo Pharmacy, 3rd Floor,<br />
                     Moghalrajpuram,<br />
@@ -3467,14 +3467,14 @@ function App() {
                 <div className="row" style={{ gap: '10px', alignItems: 'center' }}>
                   <Phone size={15} style={{ color: 'var(--color-theme-primary)', flexShrink: 0 }} />
                   <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)', lineHeight: '1.4' }}>
-                    Callback Hotline: <a href="tel:+917998777666" style={{ textDecoration: 'none', color: 'var(--color-text-primary)', fontWeight: '600' }}>+91 7998777666</a>
+                    Callback Hotline: <a href="tel:+917998777666" style={{ textDecoration: 'none', color: 'var(--color-theme-primary)', fontWeight: '600' }}>+91 7998777666</a>
                   </span>
                 </div>
 
                 <div className="row" style={{ gap: '10px', alignItems: 'center' }}>
                   <MessageSquare size={15} style={{ color: '#25d366', flexShrink: 0 }} />
                   <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)', lineHeight: '1.4' }}>
-                    WhatsApp Help: <a href="https://wa.me/918478060606?text=Here+are+the+Skin+%26+Laser+services+offered+at+Kairavam+Advanced+Skin+%26+Laser+Clinic%2C+Vijayawada%3A%0A%0ATreatment+-+Price+Range+-+Key+Benefits%0APico+Hollywood+Carbon+Laser+-+%E2%82%B93%2C000+-+%E2%82%B97%2C000%2Fsession+-+Deep+pore+cleansing%2C+oil+control%2C+brighter+complexion%2C+refined+pores%0ASkin+Resurfacing+Treatment+-+%E2%82%B96%2C000+-+%E2%82%B99%2C000+-+Smoother+texture%2C+improved+tone%2C+enhanced+renewal%0AAcne+Scar+Treatment+-+%E2%82%B95%2C500+-+%E2%82%B98%2C500+-+Reduces+boxcar%2Frolling+scars%2C+post-acne+marks%2C+uneven+texture%0APigmentation+Treatment+-+%E2%82%B93%2C000+-+%E2%82%B97%2C000+-+Melasma%2C+sunspots%2C+tanning%2C+uneven+tone+correction%0AOpen+Pore+Treatment+-+%E2%82%B94%2C000+-+%E2%82%B96%2C000+-+Reduced+pore+visibility%2C+oil+control%2C+smoother+complexion%0ASkin+Rejuvenation+Treatment+-+%E2%82%B94%2C000+-+%E2%82%B96%2C500+-+Hydration%2C+elasticity%2C+radiance%2C+anti-ageing%0A%0AUp+to+40%25+OFF+on+selected+treatments!+Call%3A+7998777666" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'var(--color-text-primary)', fontWeight: '600' }}>8478060606</a>
+                    WhatsApp Help: <a href="https://wa.me/918478060606?text=Here+are+the+Skin+%26+Laser+services+offered+at+Kairavam+Advanced+Skin+%26+Laser+Clinic%2C+Vijayawada%3A%0A%0ATreatment+-+Price+Range+-+Key+Benefits%0APico+Hollywood+Carbon+Laser+-+%E2%82%B93%2C000+-+%E2%82%B97%2C000%2Fsession+-+Deep+pore+cleansing%2C+oil+control%2C+brighter+complexion%2C+refined+pores%0ASkin+Resurfacing+Treatment+-+%E2%82%B96%2C000+-+%E2%82%B99%2C000+-+Smoother+texture%2C+improved+tone%2C+enhanced+renewal%0AAcne+Scar+Treatment+-+%E2%82%B95%2C500+-+%E2%82%B98%2C500+-+Reduces+boxcar%2Frolling+scars%2C+post-acne+marks%2C+uneven+texture%0APigmentation+Treatment+-+%E2%82%B93%2C000+-+%E2%82%B97%2C000+-+Melasma%2C+sunspots%2C+tanning%2C+uneven+tone+correction%0AOpen+Pore+Treatment+-+%E2%82%B94%2C000+-+%E2%82%B96%2C000+-+Reduced+pore+visibility%2C+oil+control%2C+smoother+complexion%0ASkin+Rejuvenation+Treatment+-+%E2%82%B94%2C000+-+%E2%82%B96%2C500+-+Hydration%2C+elasticity%2C+radiance%2C+anti-ageing%0A%0AUp+to+40%25+OFF+on+selected+treatments!+Call%3A+7998777666" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#25d366', fontWeight: '600' }}>+91 8478060606</a>
                   </span>
                 </div>
               </div>
@@ -3490,8 +3490,8 @@ function App() {
 
       {/* 14. FOOTER */}
       <footer style={{
-        background: 'var(--color-bg-card)',
-        borderTop: '1px solid var(--color-border-primary)',
+        background: '#f7f3eb',
+        borderTop: '3px solid var(--color-theme-primary)',
         padding: '60px 0 20px',
         color: 'var(--color-text-secondary)'
       }}>
@@ -3512,15 +3512,15 @@ function App() {
                 alt="Kairavam Logo"
                 style={{ height: '76px', objectFit: 'contain', alignSelf: 'flex-start', marginBottom: '4px' }}
               />
-              <p style={{ fontSize: '12px', lineHeight: '1.6' }}>
+              <p style={{ fontSize: '12px', lineHeight: '1.6', color: 'var(--color-text-muted)' }}>
                 Kairavam is Vijayawada's premier advanced skin and laser clinic. Combining expert-led cosmetic medicine with FDA-approved laser technology, we craft customized treatments that enhance your natural beauty safely and effectively.
               </p>
             </div>
 
             {/* Col 2: Treatments */}
             <div className="col" style={{ gap: '10px' }}>
-              <h4 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-primary)', fontWeight: '600' }}>Treatments</h4>
-              <div className="col" style={{ gap: '8px', fontSize: '12px' }}>
+              <h4 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-theme-primary)', fontWeight: '600' }}>Treatments</h4>
+              <div className="col" style={{ gap: '8px', fontSize: '12px', color: 'var(--color-text-secondary)' }}>
                 <a href="#treatments" style={{ textDecoration: 'none', color: 'inherit' }}>Pico Hollywood Carbon Laser</a>
                 <a href="#treatments" style={{ textDecoration: 'none', color: 'inherit' }}>Q-Switched Laser Toning</a>
                 <a href="#treatments" style={{ textDecoration: 'none', color: 'inherit' }}>Clinical Skin Resurfacing</a>
@@ -3532,9 +3532,9 @@ function App() {
 
             {/* Col 3: Clinic */}
             <div className="col" style={{ gap: '10px' }}>
-              <h4 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-primary)', fontWeight: '600' }}>Clinic</h4>
-              <div className="col" style={{ gap: '8px', fontSize: '12px' }}>
-                <span style={{ color: 'inherit' }}>Yamini Kiran Pasupuleti</span>
+              <h4 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-theme-primary)', fontWeight: '600' }}>Clinic</h4>
+              <div className="col" style={{ gap: '8px', fontSize: '12px', color: 'var(--color-text-secondary)' }}>
+                <span>Yamini Kiran Pasupuleti</span>
                 <a href="#before-after" style={{ textDecoration: 'none', color: 'inherit' }}>Patient Results</a>
                 <a href="#faq" style={{ textDecoration: 'none', color: 'inherit' }}>FAQs</a>
                 <a href="#contact" style={{ textDecoration: 'none', color: 'inherit' }}>Contact Us</a>
@@ -3543,8 +3543,8 @@ function App() {
 
             {/* Col 4: Social */}
             <div className="col" style={{ gap: '12px' }}>
-              <h4 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-primary)', fontWeight: '600' }}>Stay Updated</h4>
-              <p style={{ fontSize: '12px' }}>
+              <h4 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-theme-primary)', fontWeight: '600' }}>Stay Updated</h4>
+              <p style={{ fontSize: '12px', color: 'var(--color-text-muted)' }}>
                 Subscribe for skincare advice from Yamini and priority access to clinical offers.
               </p>
               <div className="row" style={{ gap: '16px', marginTop: '4px' }}>
@@ -3574,7 +3574,8 @@ function App() {
             alignItems: 'center',
             fontSize: '11px',
             flexWrap: 'wrap',
-            gap: '12px'
+            gap: '12px',
+            color: 'var(--color-text-muted)'
           }}>
             <span>© 2026 Kairavam Advanced Skin &amp; Laser Clinic. All rights reserved.</span>
             <a href="https://digitalverto.com/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#a5792d', fontWeight: '600', fontSize: '13px', letterSpacing: '1.5px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>Powered by Digital Verto <img src="/dv-logo.png" alt="DV Logo" style={{ height: '30px', width: 'auto', animation: 'dvHandWave 2s ease-in-out infinite', transformOrigin: 'center center' }} /></a>
