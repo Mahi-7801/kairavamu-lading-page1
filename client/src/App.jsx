@@ -952,9 +952,11 @@ function App() {
         position: 'sticky',
         top: 0,
         zIndex: 90,
-        background: 'var(--color-bg-navbar)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid var(--color-border-primary)',
+        background: 'rgba(14, 28, 20, 0.45)',
+        backdropFilter: 'blur(22px)',
+        WebkitBackdropFilter: 'blur(22px)',
+        borderBottom: '1px solid rgba(192, 157, 87, 0.28)',
+        boxShadow: '0 4px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(192, 157, 87, 0.12)',
         padding: '12px 0',
         transition: 'var(--transition-smooth)'
       }}>
