@@ -982,7 +982,7 @@ function App() {
           <div className="header-desktop-actions row" style={{ gap: '16px' }}>
             <div className="header-contact row" style={{ gap: '6px', color: 'var(--color-text-secondary)', fontSize: '12px', fontWeight: '600' }}>
               <Phone size={13} style={{ color: 'var(--color-theme-secondary)' }} />
-              <a href="tel:7998777666" style={{ textDecoration: 'none', color: 'inherit' }}>7998777666</a>
+              <a href="tel:+917998777666" style={{ textDecoration: 'none', color: 'inherit' }}>+91 7998777666</a>
             </div>
             <a
               href="https://wa.me/918478060606?text=Here+are+the+Skin+%26+Laser+services+offered+at+Kairavam+Advanced+Skin+%26+Laser+Clinic%2C+Vijayawada%3A%0A%0ATreatment+-+Price+Range+-+Key+Benefits%0APico+Hollywood+Carbon+Laser+-+%E2%82%B93%2C000+-+%E2%82%B97%2C000%2Fsession+-+Deep+pore+cleansing%2C+oil+control%2C+brighter+complexion%2C+refined+pores%0ASkin+Resurfacing+Treatment+-+%E2%82%B96%2C000+-+%E2%82%B99%2C000+-+Smoother+texture%2C+improved+tone%2C+enhanced+renewal%0AAcne+Scar+Treatment+-+%E2%82%B95%2C500+-+%E2%82%B98%2C500+-+Reduces+boxcar%2Frolling+scars%2C+post-acne+marks%2C+uneven+texture%0APigmentation+Treatment+-+%E2%82%B93%2C000+-+%E2%82%B97%2C000+-+Melasma%2C+sunspots%2C+tanning%2C+uneven+tone+correction%0AOpen+Pore+Treatment+-+%E2%82%B94%2C000+-+%E2%82%B96%2C000+-+Reduced+pore+visibility%2C+oil+control%2C+smoother+complexion%0ASkin+Rejuvenation+Treatment+-+%E2%82%B94%2C000+-+%E2%82%B96%2C500+-+Hydration%2C+elasticity%2C+radiance%2C+anti-ageing%0A%0AUp+to+40%25+OFF+on+selected+treatments!+Call%3A+7998777666"
@@ -1048,7 +1048,7 @@ function App() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', alignItems: 'stretch' }}>
               <div className="row" style={{ gap: '8px', color: 'var(--color-text-secondary)', fontSize: '14px', fontWeight: '600', justifyContent: 'center' }}>
                 <Phone size={15} style={{ color: 'var(--color-theme-secondary)' }} />
-                <a href="tel:7998777666" style={{ textDecoration: 'none', color: 'inherit' }}>7998777666</a>
+                <a href="tel:+917998777666" style={{ textDecoration: 'none', color: 'inherit' }}>+91 7998777666</a>
               </div>
               <a
                 href="https://wa.me/918478060606?text=Here+are+the+Skin+%26+Laser+services+offered+at+Kairavam+Advanced+Skin+%26+Laser+Clinic%2C+Vijayawada%3A%0A%0ATreatment+-+Price+Range+-+Key+Benefits%0APico+Hollywood+Carbon+Laser+-+%E2%82%B93%2C000+-+%E2%82%B97%2C000%2Fsession+-+Deep+pore+cleansing%2C+oil+control%2C+brighter+complexion%2C+refined+pores%0ASkin+Resurfacing+Treatment+-+%E2%82%B96%2C000+-+%E2%82%B99%2C000+-+Smoother+texture%2C+improved+tone%2C+enhanced+renewal%0AAcne+Scar+Treatment+-+%E2%82%B95%2C500+-+%E2%82%B98%2C500+-+Reduces+boxcar%2Frolling+scars%2C+post-acne+marks%2C+uneven+texture%0APigmentation+Treatment+-+%E2%82%B93%2C000+-+%E2%82%B97%2C000+-+Melasma%2C+sunspots%2C+tanning%2C+uneven+tone+correction%0AOpen+Pore+Treatment+-+%E2%82%B94%2C000+-+%E2%82%B96%2C000+-+Reduced+pore+visibility%2C+oil+control%2C+smoother+complexion%0ASkin+Rejuvenation+Treatment+-+%E2%82%B94%2C000+-+%E2%82%B96%2C500+-+Hydration%2C+elasticity%2C+radiance%2C+anti-ageing%0A%0AUp+to+40%25+OFF+on+selected+treatments!+Call%3A+7998777666"
@@ -3465,7 +3465,7 @@ function App() {
                 <div className="row" style={{ gap: '10px', alignItems: 'center' }}>
                   <Phone size={15} style={{ color: 'var(--color-theme-primary)', flexShrink: 0 }} />
                   <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)', lineHeight: '1.4' }}>
-                    Callback Hotline: <a href="tel:7998777666" style={{ textDecoration: 'none', color: 'var(--color-text-primary)', fontWeight: '600' }}>7998777666</a>
+                    Callback Hotline: <a href="tel:+917998777666" style={{ textDecoration: 'none', color: 'var(--color-text-primary)', fontWeight: '600' }}>+91 7998777666</a>
                   </span>
                 </div>
 

@@ -3,15 +3,15 @@
    ========================================================================== */
 
 :root {
-  /* Rich Aesthetics: Luxurious dark forest green background & metallic gold accents matching the logo badge theme */
+  /* Rich Aesthetics: Warm cream-forest blend with metallic gold accents matching the logo badge theme */
   --color-bg-main: transparent;
-  /* Dominant logo green background - transparent to let animated body show */
-  --color-bg-card: #14251e;
-  /* Deep forest green card backgrounds */
-  --color-bg-card-hl: #1c3229;
-  /* Rich green card backgrounds highlight */
-  --color-bg-navbar: rgba(58, 78, 66, 0.92);
-  /* Matching logo background with transparency */
+  /* Transparent to let animated body show */
+  --color-bg-card: #1e2b22;
+  /* Deep warm-forest card backgrounds */
+  --color-bg-card-hl: #2a3a2e;
+  /* Slightly lighter warm-green card highlight */
+  --color-bg-navbar: rgba(42, 38, 28, 0.93);
+  /* Deep warm bark-brown navbar with transparency */
 
   --color-theme-primary: #c09d57;
   /* Premium Logo Gold */
@@ -63,16 +63,21 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #14251e;
+  background-color: #1e2b22;
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background: linear-gradient(135deg, #14251e 0%, #3a4e42 30%, #1c3229 70%, #253b30 100%);
+  background: linear-gradient(135deg,
+    #2c3b30 0%,
+    #4a3f2e 25%,
+    #3a4e42 50%,
+    #5c4a30 75%,
+    #2c3b30 100%);
   background-size: 400% 400%;
-  animation: gradientBg 18s ease infinite;
+  animation: gradientBg 20s ease infinite;
 }
 
 /* Scrollbar Customization */
@@ -91,6 +96,19 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(158, 93, 62, 0.5);
+}
+
+/* Animated gradient keyframe — cream to forest green blend */
+@keyframes gradientBg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Typography elements */
@@ -989,9 +1007,9 @@ p {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(20, 37, 30, 0.85);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--color-border-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1008,9 +1026,10 @@ p {
 }
 
 .hero-kv-carousel-nav:hover {
-  background: #ffffff;
+  background: var(--color-bg-card-hl);
+  border-color: var(--color-theme-primary);
   transform: translateY(-50%) scale(1.08);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 20px rgba(192, 157, 87, 0.2);
 }
 
 .hero-kv-carousel-nav-prev {
@@ -1361,7 +1380,7 @@ p {
 /* Double-border luxury spa cards */
 .luxury-spa-card {
   background: var(--color-bg-card);
-  border: 1px solid var(--color-border-primary);
+  border: 1.5px solid var(--color-theme-primary);
   border-radius: var(--border-radius-lg);
   padding: 32px;
   position: relative;
@@ -1856,10 +1875,10 @@ p {
 }
 
 .quiz-card-option:hover {
-  border-color: var(--color-theme-secondary) !important;
-  background: #ffffff !important;
+  border-color: var(--color-theme-primary) !important;
+  background: var(--color-bg-card-hl) !important;
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(166, 130, 99, 0.12) !important;
+  box-shadow: 0 12px 24px rgba(192, 157, 87, 0.15) !important;
 }
 
 .quiz-card-option:hover .arrow-hover {
@@ -2439,12 +2458,12 @@ select.form-control option {
 /* Form Validation States */
 .form-control.error {
   border-color: #dc2626 !important;
-  background: #fff5f5 !important;
+  background: rgba(220, 38, 38, 0.08) !important;
 }
 
 .form-control.valid {
   border-color: #16a34a !important;
-  background: #f0fdf4 !important;
+  background: rgba(22, 163, 74, 0.08) !important;
 }
 
 .field-error {
@@ -3165,7 +3184,7 @@ select.form-control option {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #ffffff;
+  background: var(--color-bg-card);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3461,21 +3480,21 @@ select.form-control option {
 /* Left Card */
 .carousel-slide-card.left-slide {
   transform: scale(0.85) translate3d(-68%, 0, -80px) rotateY(15deg);
-  opacity: 0.55;
+  opacity: 0.75;
   z-index: 5;
   visibility: visible;
   pointer-events: auto;
-  filter: blur(1.5px) grayscale(0.1);
+  filter: grayscale(0.1);
 }
 
 /* Right Card */
 .carousel-slide-card.right-slide {
   transform: scale(0.85) translate3d(68%, 0, -80px) rotateY(-15deg);
-  opacity: 0.55;
+  opacity: 0.75;
   z-index: 5;
   visibility: visible;
   pointer-events: auto;
-  filter: blur(1.5px) grayscale(0.1);
+  filter: grayscale(0.1);
 }
 
 /* Hidden Cards */
