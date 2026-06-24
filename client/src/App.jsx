@@ -248,7 +248,7 @@ function App() {
     // 1. Calculate static fallbacks first
     if (selectedConcern === 'Acne Scars' || selectedConcern === 'మొటిమల మచ్చలు & అసమతలం') {
       recommended = 'Pico Hollywood Carbon Laser & Skin Resurfacing'
-      details = 'Dr. Yamini recommends our dual-action approach. The Carbon Peel purifies active pores, while skin resurfacing stimulates fresh collagen to level out scar depth.'
+      details = 'Yamini recommends our dual-action approach. The Carbon Peel purifies active pores, while skin resurfacing stimulates fresh collagen to level out scar depth.'
       startingPrice = '₹5,000'
       slug = 'Pico Hollywood Carbon Laser'
       layer = 'Dermal Collagen Layer'
@@ -256,7 +256,7 @@ function App() {
       downtime = '1–2 Days (Mild Redness)'
     } else if (selectedConcern === 'Pigmentation' || selectedConcern === 'వర్ణద్రవ్యం & మెలాస్మా') {
       recommended = 'Q-Switched Laser Toning'
-      details = 'To break down deep melasma or hyperpigmentation, Dr. Yamini recommends Q-switched laser toning. It targets melanin without peeling or heating the outer skin layer.'
+      details = 'To break down deep melasma or hyperpigmentation, Yamini recommends Q-switched laser toning. It targets melanin without peeling or heating the outer skin layer.'
       startingPrice = '₹3,000'
       slug = 'Laser Toning'
       layer = 'Epidermal Melanin'
@@ -264,7 +264,7 @@ function App() {
       downtime = 'None (Immediate Glow)'
     } else {
       recommended = 'Clinical Skin Resurfacing'
-      details = 'For overall skin texture improvement and rejuvenation, Dr. Yamini recommends Clinical Skin Resurfacing to stimulate collagen production and reveal healthier skin.'
+      details = 'For overall skin texture improvement and rejuvenation, Yamini recommends Clinical Skin Resurfacing to stimulate collagen production and reveal healthier skin.'
       startingPrice = '₹4,000'
       slug = 'Clinical Skin Resurfacing'
       layer = 'Epidermal & Dermal Layers'
@@ -272,7 +272,7 @@ function App() {
       downtime = '1–2 Days (Mild Redness)'
     }
 
-    let details_te = quizLang === 'te' ? 'మీ సమస్యకు తగిన సరైన చికిత్సను అందించడానికి డా. యమిని తగిన చికిత్సను సిఫార్సు చేస్తున్నారు.' : undefined;
+    let details_te = quizLang === 'te' ? 'మీ సమస్యకు తగిన సరైన చికిత్సను అందించడానికి యమిని తగిన చికిత్సను సిఫార్సు చేస్తున్నారు.' : undefined;
 
     // 2. Call backend API for real-time analysis
     try {
@@ -331,8 +331,8 @@ function App() {
         ? `${selectedSkinType} చర్మ ప్రొఫైల్‌తో సరిపోల్చుతోంది...`
         : `Cross-matching with ${selectedSkinType} skin profile...`,
       formulating: quizLang === 'te'
-        ? 'డా. యమిని చికిత్స సిఫారసు రూపొందిస్తోంది...'
-        : "Formulating Dr. Yamini's treatment recommendations..."
+        ? 'యమిని చికిత్స సిఫారసు రూపొందిస్తోంది...'
+        : "Formulating Yamini's treatment recommendations..."
     }
     setLoadingText(msg.init)
 
@@ -521,7 +521,7 @@ function App() {
       ],
       price: '₹6,000',
       range: '₹6,000 - ₹9,000',
-      image: '/laser-uhr3.jpg'
+      image: '/skin_resurfacing_clinical.png'
     },
     {
       id: 'acne-scar',
@@ -538,7 +538,7 @@ function App() {
       ],
       price: '₹5,500',
       range: '₹5,500 - ₹8,500',
-      image: '/laser-uhr1.jpg'
+      image: '/acne_scar_clinical.png'
     },
     {
       id: 'pigmentation',
@@ -554,7 +554,7 @@ function App() {
       ],
       price: '₹3,000',
       range: '₹3,000 - ₹7,000',
-      image: '/laser-toning.jpg'
+      image: '/laser_toning_clinical.png'
     },
     {
       id: 'open-pores',
@@ -586,34 +586,34 @@ function App() {
       ],
       price: '₹4,000',
       range: '₹4,000 - ₹6,500',
-      image: '/laser-uhr2.jpg'
+      image: '/skin_rejuvenation_clinical.png'
     }
   ]
 
   const treatmentSlides = [
     { src: '/carbon-peel.jpg', title: 'Pico Hollywood Carbon Laser', desc: 'Deep pore cleansing & instant glow' },
-    { src: '/laser-toning.jpg', title: 'Q-Switched Laser Toning', desc: 'Pigmentation & melasma clearing' },
-    { src: '/laser-uhr3.jpg', title: 'Skin Resurfacing', desc: 'Texture improvement & collagen renewal' },
-    { src: '/laser-uhr1.jpg', title: 'Acne Scar Treatment', desc: 'Scar revision & smooth texture' },
+    { src: '/laser_toning_clinical.png', title: 'Q-Switched Laser Toning', desc: 'Pigmentation & melasma clearing' },
+    { src: '/skin_resurfacing_clinical.png', title: 'Skin Resurfacing', desc: 'Texture improvement & collagen renewal' },
+    { src: '/acne_scar_clinical.png', title: 'Acne Scar Treatment', desc: 'Scar revision & smooth texture' },
     { src: '/carbonpeel1.jpg', title: 'Open Pores Treatment', desc: 'Pore tightening & oil control' },
   ]
 
   const beforeAfterImages = {
     skin: {
-      before: '/before_face.png',
-      after: '/after_face.png',
+      before: '/carbonpeel-before.png',
+      after: '/carbonpeel-after.png',
       title: 'Carbon Laser Resurfacing (Acne Scars & Glow)',
       text: 'After 3 sessions: Clean pores, normalized sebum, and 85% improvement in texture.'
     },
     acne: {
-      before: '/carbonpeel-before.png',
-      after: '/carbonpeel-after.png',
+      before: '/acne_before.png',
+      after: '/acne_after.png',
       title: 'Acne Scar Revision Treatment',
       text: 'After 4 sessions: Significant reduction in acne scar depth, smoother skin texture, and renewed confidence.'
     },
     pigment: {
-      before: '/before_face.png',
-      after: '/after_face.png',
+      before: '/pigment_before.png',
+      after: '/pigment_after.png',
       title: 'Pigmentation & Tone Correction',
       text: 'After 3 sessions: Noticeable reduction in pigmentation, more even skin tone, and enhanced skin brightness.'
     }
@@ -1235,12 +1235,10 @@ function App() {
             </div>
             <div className="col" style={{ gap: '20px' }}>
               <span className="section-subtitle">Meet Your Aesthetic Specialist</span>
-              <h2 className="section-title" style={{ marginBottom: '8px' }}>Dr. Yamini <span>MBBS, MD</span></h2>
+              <h2 className="section-title" style={{ marginBottom: '4px' }}>Yamini Kiran Pasupuleti</h2>
+              <p style={{ fontSize: '16px', color: 'var(--color-theme-secondary)', fontWeight: '500', margin: '0 0 12px' }}>Senior Cosmetologist & Aesthetic Expert</p>
               <p className="section-desc" style={{ margin: '0 0 8px', maxWidth: '100%', fontSize: '15px' }}>
-                With over a decade of clinical experience, Dr. Yamini is a highly skilled aesthetic physician specializing in advanced laser treatments, skin rejuvenation, and personalized dermatological care. Her patient-first approach combines medical expertise with an artistic eye, ensuring natural-looking results tailored to each individual.
-              </p>
-              <p className="section-desc" style={{ margin: '0 0 8px', maxWidth: '100%', fontSize: '14px' }}>
-                Dr. Yamini has successfully performed thousands of laser procedures for acne scars, pigmentation, open pores, skin resurfacing, and overall skin rejuvenation. She believes in educating patients about their skin and involving them in every step of the treatment journey.
+                With over a decade of experience in aesthetic skincare and cosmetic treatments, Yamini specializes in advanced laser treatments, skin rejuvenation, and personalized beauty solutions. Her client-focused approach helps individuals achieve healthy, radiant, and natural-looking results tailored to their unique skin concerns.
               </p>
               <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', marginTop: '8px' }}>
                 <div className="col" style={{ gap: '2px' }}>
@@ -1249,7 +1247,7 @@ function App() {
                 </div>
                 <div className="col" style={{ gap: '2px' }}>
                   <span style={{ fontSize: '24px', fontWeight: '700', color: 'var(--color-theme-secondary)', fontFamily: 'var(--font-serif)' }}>15K+</span>
-                  <span style={{ fontSize: '11px', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Happy Patients</span>
+                  <span style={{ fontSize: '11px', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Happy Clients</span>
                 </div>
                 <div className="col" style={{ gap: '2px' }}>
                   <span style={{ fontSize: '24px', fontWeight: '700', color: 'var(--color-theme-secondary)', fontFamily: 'var(--font-serif)' }}>50+</span>
@@ -1258,7 +1256,7 @@ function App() {
               </div>
               <div style={{ marginTop: '12px' }}>
                 <button onClick={() => scrollToSection(bookingFormRef)} className="btn-gold" style={{ padding: '14px 32px', fontSize: '11px' }}>
-                  Consult Dr. Yamini <ArrowRight size={14} />
+                  Consult Cosmetologist & Aesthetic <ArrowRight size={14} />
                 </button>
               </div>
             </div>
@@ -1649,8 +1647,8 @@ function App() {
                   </div>
                 </div>
                 <div className="media-grid">
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/laser-toning.jpg')` }}></div><span className="media-caption">Toning Session</span></div>
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/carbonpeel-after.png')` }}></div><span className="media-caption">Radiance Result</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/laser_toning_clinical.png')` }}></div><span className="media-caption">Toning Session</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/pigment_after.png')` }}></div><span className="media-caption">Radiance Result</span></div>
                 </div>
                 <div className="progress-card">
                   <span className="progress-title">Procedure Success Markers</span>
@@ -1694,8 +1692,8 @@ function App() {
                   </div>
                 </div>
                 <div className="media-grid">
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/laser-uhr3.jpg')` }}></div><span className="media-caption">Resurfacing Session</span></div>
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/laser-uhr1.jpg')` }}></div><span className="media-caption">Skin Renewal Result</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/skin_resurfacing_clinical.png')` }}></div><span className="media-caption">Resurfacing Session</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/after_face.png')` }}></div><span className="media-caption">Skin Renewal Result</span></div>
                 </div>
                 <div className="progress-card">
                   <span className="progress-title">Procedure Success Markers</span>
@@ -1739,8 +1737,8 @@ function App() {
                   </div>
                 </div>
                 <div className="media-grid">
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/laser-uhr1.jpg')` }}></div><span className="media-caption">Laser Scar Session</span></div>
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/carbonpeel-after.png')` }}></div><span className="media-caption">Smooth Result</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/acne_scar_clinical.png')` }}></div><span className="media-caption">Laser Scar Session</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/acne_after.png')` }}></div><span className="media-caption">Smooth Result</span></div>
                 </div>
                 <div className="progress-card">
                   <span className="progress-title">Procedure Success Markers</span>
@@ -1756,46 +1754,47 @@ function App() {
               </div>
             </div>
 
-            {/* ── Timeline Item 5: Pigmentation Treatment (left) ── */}
+
+            {/* ── Timeline Item 5: Skin Rejuvenation Treatment (left) ── */}
             <div ref={tlCard5Ref} className={`timeline-item${tlCard5In ? ' in-view' : ''}`}>
               <div className="timeline-marker"></div>
               <div className={`timeline-card${tlCard5In ? ' in-view' : ''}`}>
                 <div className="row" style={{ gap: '12px', alignItems: 'flex-start' }}>
                   <div className="timeline-card-icon">
-                    <Scan size={18} style={{ color: 'var(--color-theme-secondary)' }} />
+                    <Sparkles size={18} style={{ color: 'var(--color-theme-secondary)' }} />
                   </div>
                   <div className="col" style={{ gap: '2px' }}>
-                    <h3>Pigmentation Treatment</h3>
-                    <span className="insight-subtitle">Melasma, Sunspots, Tanning & Uneven Tone Correction</span>
+                    <h3>Skin Rejuvenation Treatment</h3>
+                    <span className="insight-subtitle">Cellular Hydration, Skin Elasticity & Premium Anti-Ageing Glow</span>
                   </div>
                 </div>
                 <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
-                  Our advanced pigmentation treatments use Q-Switched laser technology to target excess melanin at the epidermal and dermal levels. The laser energy breaks down pigment particles into microscopic fragments, which are then naturally eliminated by the body. This approach effectively treats melasma, sun damage, tanning, and post-inflammatory hyperpigmentation.
+                  Refresh tired, dull, and ageing skin with treatments designed to improve hydration, elasticity, and overall skin health. We use targeted serums and micro-current systems to stimulate collagen production and deep dermal cell renewal for a refreshed appearance.
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                  <div className="stat-card"><div className="stat-value">84%</div><span className="stat-label">Pigmentation Cleared</span></div>
-                  <div className="stat-card"><div className="stat-value">+87%</div><span className="stat-label">Skin Tone Uniformity</span></div>
+                  <div className="stat-card"><div className="stat-value">88%</div><span className="stat-label">Hydration & Plumpness Boost</span></div>
+                  <div className="stat-card"><div className="stat-value">+85%</div><span className="stat-label">Elasticity & Texture Refined</span></div>
                 </div>
                 <div className="col" style={{ gap: '8px' }}>
                   <span className="section-label">Before vs After Snapshot</span>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', fontSize: '12px' }}>
-                    <div className="ba-box ba-box-before"><strong style={{ color: 'var(--color-text-primary)' }}>Before:</strong> Dark patches, uneven skin tone, stubborn melasma, and sun-induced pigmentation.</div>
-                    <div className="ba-box ba-box-after"><strong style={{ color: 'var(--color-theme-secondary)' }}>After:</strong> Clear, unified complexion with significantly reduced pigmentation and renewed radiance.</div>
+                    <div className="ba-box ba-box-before"><strong style={{ color: 'var(--color-text-primary)' }}>Before:</strong> Dull complexion, dehydrated texture, fine lines, and visible signs of tiredness.</div>
+                    <div className="ba-box ba-box-after"><strong style={{ color: 'var(--color-theme-secondary)' }}>After:</strong> Plump, deeply hydrated skin, enhanced radiance, and refreshed youthful glow.</div>
                   </div>
                 </div>
                 <div className="media-grid">
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/laser-toning.jpg')` }}></div><span className="media-caption">Laser Toning Session</span></div>
-                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/before_face.png')` }}></div><span className="media-caption">Pigment Clearance</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/skin_rejuvenation_clinical.png')` }}></div><span className="media-caption">Rejuvenation Session</span></div>
+                  <div className="media-item"><div className="media-img" style={{ backgroundImage: `url('/after_face.png')` }}></div><span className="media-caption">Radiance Glow Result</span></div>
                 </div>
                 <div className="progress-card">
                   <span className="progress-title">Procedure Success Markers</span>
                   <div className="col" style={{ gap: '10px' }}>
-                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Pigment Reduction</span><span>84% Clearance</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '84%' }}></div></div></div>
-                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Tone Uniformity</span><span>87% Uniformity</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '87%' }}></div></div></div>
-                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Melasma Reduction</span><span>76% Clearance</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '76%' }}></div></div></div>
+                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Skin Hydration Increase</span><span>88% Boost</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '88%' }}></div></div></div>
+                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Texture Rejuvenation</span><span>85% Improvement</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '85%' }}></div></div></div>
+                    <div><div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--color-text-secondary)', marginBottom: '4px' }}><span>Elasticity Recovery</span><span>80% Activation</span></div><div className="premium-progress-bar"><div className="premium-progress-fill premium-progress-fill-gold" style={{ width: '80%' }}></div></div></div>
                   </div>
                 </div>
-                <button onClick={() => { setFormData(prev => ({ ...prev, treatment: 'Pigmentation Treatment' })); scrollToSection(bookingFormRef); }} className="btn-gold" style={{ padding: '12px 24px', fontSize: '11px', alignSelf: 'flex-start' }}>
+                <button onClick={() => { setFormData(prev => ({ ...prev, treatment: 'Skin Rejuvenation Treatment' })); scrollToSection(bookingFormRef); }} className="btn-gold" style={{ padding: '12px 24px', fontSize: '11px', alignSelf: 'flex-start' }}>
                   Book This Treatment <ArrowUpRight size={13} />
                 </button>
               </div>
@@ -1977,7 +1976,7 @@ function App() {
                 </div>
 
                 <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)', fontStyle: 'italic', lineHeight: '1.55' }}>
-                  "I was extremely self-conscious about my deep acne scars and uneven skin tone. After consulting Dr. Yamini, she recommended a combination of Skin Resurfacing and Laser Toning. The change after just 4 sessions is unbelievable. My skin feels smooth and looks bright. Highly recommend Kairavam!"
+                  "I was extremely self-conscious about my deep acne scars and uneven skin tone. After consulting Yamini, she recommended a combination of Skin Resurfacing and Laser Toning. The change after just 4 sessions is unbelievable. My skin feels smooth and looks bright. Highly recommend Kairavam!"
                 </p>
 
                 <div className="row" style={{ gap: '6px' }}>
@@ -2242,7 +2241,7 @@ function App() {
             <div className="journey-steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '20px', position: 'relative', zIndex: 2 }}>
               {[
                 { num: 1, title: 'Skin Quiz', desc: 'Spend 2 minutes sharing your concerns and goals online.' },
-                { num: 2, title: 'Consultation', desc: 'Meet Dr. Yamini for an in-depth clinical evaluation of skin/hair.' },
+                { num: 2, title: 'Consultation', desc: 'Meet Yamini for an in-depth clinical evaluation of skin/hair.' },
                 { num: 3, title: 'Customized Plan', desc: 'Receive a personalized treatment blueprint matching your biology.' },
                 { num: 4, title: 'Treatment Session', desc: 'Experience comfortable, expert care using our FDA-approved systems.' },
                 { num: 5, title: 'Follow-up Care', desc: 'Follow our custom homecare roadmap and visit for scheduled checks.' }
@@ -2300,13 +2299,13 @@ function App() {
             </span>
             <h2 className="section-title">
               {quizLang === 'te'
-                ? <>Dr. యమిని యొక్క <span>చర్మ నిర్ధారణ</span></>
+                ? <>యమిని యొక్క <span>చర్మ నిర్ధారణ</span></>
                 : <>AI-Powered <span>Skin Assessment</span></>}
             </h2>
             <p className="section-desc">
               {quizLang === 'te'
-                ? 'మీ ప్రాధమిక సమస్యల ఆధారంగా తక్షణ క్లినికల్ సిఫారసు పొందండి — డా. యమిని యొక్క నిర్ధారణ ఫ్రేమ్‌వర్క్ ద్వారా విశ్లేషించబడింది.'
-                : "Get an instant clinical recommendation based on your primary concerns, analyzed live under Dr. Yamini's diagnostic framework."}
+                ? 'మీ ప్రాధమిక సమస్యల ఆధారంగా తక్షణ క్లినికల్ సిఫారసు పొందండి — యమిని యొక్క నిర్ధారణ ఫ్రేమ్‌వర్క్ ద్వారా విశ్లేషించబడింది.'
+                : "Get an instant clinical recommendation based on your primary concerns, analyzed live under Yamini's diagnostic framework."}
             </p>
           </div>
 
@@ -2356,8 +2355,8 @@ function App() {
                   </div>
                   <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)' }}>
                     {quizLang === 'te'
-                      ? 'మీ ప్రాధమిక సమస్యను ఎంచుకోండి. డా. యమిని యొక్క నిర్ధారణ వ్యవస్థ దాన్ని అత్యుత్తమ చికిత్స ప్రోటోకాల్‌కు సరిపోల్చుతుంది.'
-                      : "Select your primary aesthetic concern. Dr. Yamini's diagnostic system will match it to the ideal treatment protocol."}
+                      ? 'మీ ప్రాధమిక సమస్యను ఎంచుకోండి. యమిని యొక్క నిర్ధారణ వ్యవస్థ దాన్ని అత్యుత్తమ చికిత్స ప్రోటోకాల్‌కు సరిపోల్చుతుంది.'
+                      : "Select your primary aesthetic concern. Yamini's diagnostic system will match it to the ideal treatment protocol."}
                   </p>
 
                   <div className="quiz-card-grid">
@@ -2615,7 +2614,7 @@ function App() {
                       </div>
                       <div className="col" style={{ gap: '8px', flex: 1 }}>
                         <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-theme-primary)', fontWeight: '700' }}>
-                          {quizLang === 'te' ? 'డా. యమిని సిఫారసు' : "Dr. Yamini's Recommendation"}
+                          {quizLang === 'te' ? 'యమిని సిఫారసు' : "Yamini's Recommendation"}
                         </span>
                         <h3 style={{ fontSize: '20px', color: 'var(--color-text-primary)', fontFamily: 'var(--font-serif)', fontWeight: '600', lineHeight: '1.3' }}>
                           {quizResult.recommended}
@@ -2728,7 +2727,7 @@ function App() {
               {/* Features list */}
               <div className="col" style={{ gap: '10px', fontSize: '12.5px', color: 'var(--color-text-secondary)' }}>
                 <div className="row" style={{ gap: '8px' }}><Check size={14} style={{ color: 'var(--color-theme-secondary)' }} /> Pico Hollywood Carbon Laser</div>
-                <div className="row" style={{ gap: '8px' }}><Check size={14} style={{ color: 'var(--color-theme-secondary)' }} /> Customized Treatment Blueprint by Dr. Yamini</div>
+                <div className="row" style={{ gap: '8px' }}><Check size={14} style={{ color: 'var(--color-theme-secondary)' }} /> Customized Treatment Blueprint by Yamini</div>
                 <div className="row" style={{ gap: '8px' }}><Check size={14} style={{ color: 'var(--color-theme-secondary)' }} /> Advanced Hydration Collagen Boosting Mask</div>
                 <div className="row" style={{ gap: '8px' }}><Check size={14} style={{ color: 'var(--color-theme-secondary)' }} /> 24/7 WhatsApp Post-Care Priority Support</div>
                 <div className="row" style={{ gap: '8px' }}><Check size={14} style={{ color: 'var(--color-theme-secondary)' }} /> 1 Free Follow-up Review Session</div>
@@ -3227,7 +3226,7 @@ function App() {
                   Up To 40% OFF On Selected Treatments &bull; Limited Slots Available
                 </p>
                 <p style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>
-                  Submit the form below and Dr. Yamini's patient coordinators will call you back within 15 minutes to confirm.
+                  Submit the form below and Yamini's patient coordinators will call you back within 15 minutes to confirm.
                 </p>
               </div>
 
@@ -3480,7 +3479,7 @@ function App() {
             <div className="col" style={{ gap: '10px' }}>
               <h4 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-primary)', fontWeight: '600' }}>Clinic</h4>
               <div className="col" style={{ gap: '8px', fontSize: '12px' }}>
-                <span style={{ color: 'inherit' }}>Dr. Yamini Kiran Pasupuleti</span>
+                <span style={{ color: 'inherit' }}>Yamini Kiran Pasupuleti</span>
                 <a href="#before-after" style={{ textDecoration: 'none', color: 'inherit' }}>Patient Results</a>
                 <a href="#faq" style={{ textDecoration: 'none', color: 'inherit' }}>FAQs</a>
                 <a href="#contact" style={{ textDecoration: 'none', color: 'inherit' }}>Contact Us</a>
@@ -3491,7 +3490,7 @@ function App() {
             <div className="col" style={{ gap: '12px' }}>
               <h4 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-primary)', fontWeight: '600' }}>Stay Updated</h4>
               <p style={{ fontSize: '12px' }}>
-                Subscribe for skincare advice from Dr. Yamini and priority access to clinical offers.
+                Subscribe for skincare advice from Yamini and priority access to clinical offers.
               </p>
               <div className="row" style={{ gap: '16px', marginTop: '4px' }}>
                 <a href="https://www.instagram.com/kairavam_/" target="_blank" rel="noopener noreferrer" className="footer-social-icon instagram">

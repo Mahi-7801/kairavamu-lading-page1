@@ -87,7 +87,7 @@ app.post('/api/assess-skin', async (req, res) => {
       return res.status(400).json({ error: 'concern and skinType are required' });
     }
 
-    const systemPrompt = `You are an AI Dermato-Cosmetologist assistant analyzing patient skin/hair concerns under Dr. Yamini's diagnostic framework.
+    const systemPrompt = `You are an AI Dermato-Cosmetologist assistant analyzing patient skin/hair concerns under Yamini's diagnostic framework.
 Analyze the user's primary concern: "${concern}" and skin profile: "${skinType}".
 Output a JSON object ONLY. Do not include markdown code block styling or extra text. Use the exact keys:
 {
