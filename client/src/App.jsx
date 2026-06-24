@@ -955,8 +955,8 @@ function App() {
         background: 'transparent',
         backdropFilter: 'blur(24px)',
         WebkitBackdropFilter: 'blur(24px)',
-        borderBottom: '1px solid rgba(192, 157, 87, 0.30)',
-        boxShadow: '0 4px 24px rgba(0,0,0,0.06), inset 0 -1px 0 rgba(192, 157, 87, 0.12)',
+        borderBottom: '1px solid rgba(225, 207, 124, 0.30)',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.06), inset 0 -1px 0 rgba(225, 207, 124, 0.12)',
         padding: '12px 0',
         transition: 'var(--transition-smooth)'
       }}>
@@ -3416,7 +3416,6 @@ function App() {
             <div className="col" style={{ gap: '20px', justifyContent: 'space-between' }}>
               {/* Google Maps Embed with Animation */}
               <div className="map-wrapper animate-map">
-                <div className="map-overlay-top"></div>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.426187571828!2d80.64465607460865!3d16.504568027637607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fb1531f3efc5%3A0xf99a9d5c3d3ccae6!2sKairavam!5e0!3m2!1sen!2sin!4v1781679412808!5m2!1sen!2sin"
                   width="100%"
