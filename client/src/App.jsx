@@ -1306,7 +1306,7 @@ function App() {
       </section>
 
       {/* SKIN TREATMENT SERVICES */}
-      <section className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', background: 'var(--color-bg-main)' }}>
+      <section className="section-padding section-bg-green-anim" style={{ borderBottom: '1px solid var(--color-border-primary)' }}>
         <div className="container">
           <div className="text-center">
             <span className="section-subtitle">Our Specialized Treatments</span>
@@ -1889,7 +1889,7 @@ function App() {
       </section>
 
       {/* 6. Interactive BEFORE/AFTER COMPARISON PANEL */}
-      <section id="before-after" className="section-padding" style={{ borderBottom: '1px solid var(--color-border-primary)', position: 'relative' }}>
+      <section id="before-after" className="section-padding section-bg-green-anim" style={{ borderBottom: '1px solid var(--color-border-primary)', position: 'relative' }}>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="grid32" style={{ alignItems: 'center' }}>
 
@@ -3394,6 +3394,26 @@ function App() {
                     WhatsApp Help: <a href="https://wa.me/918478060606?text=Here+are+the+Skin+%26+Laser+services+offered+at+Kairavam+Advanced+Skin+%26+Laser+Clinic%2C+Vijayawada%3A%0A%0ATreatment+-+Price+Range+-+Key+Benefits%0APico+Hollywood+Carbon+Laser+-+%E2%82%B93%2C000+-+%E2%82%B97%2C000%2Fsession+-+Deep+pore+cleansing%2C+oil+control%2C+brighter+complexion%2C+refined+pores%0ASkin+Resurfacing+Treatment+-+%E2%82%B96%2C000+-+%E2%82%B99%2C000+-+Smoother+texture%2C+improved+tone%2C+enhanced+renewal%0AAcne+Scar+Treatment+-+%E2%82%B95%2C500+-+%E2%82%B98%2C500+-+Reduces+boxcar%2Frolling+scars%2C+post-acne+marks%2C+uneven+texture%0APigmentation+Treatment+-+%E2%82%B93%2C000+-+%E2%82%B97%2C000+-+Melasma%2C+sunspots%2C+tanning%2C+uneven+tone+correction%0AOpen+Pore+Treatment+-+%E2%82%B94%2C000+-+%E2%82%B96%2C000+-+Reduced+pore+visibility%2C+oil+control%2C+smoother+complexion%0ASkin+Rejuvenation+Treatment+-+%E2%82%B94%2C000+-+%E2%82%B96%2C500+-+Hydration%2C+elasticity%2C+radiance%2C+anti-ageing%0A%0AUp+to+40%25+OFF+on+selected+treatments!+Call%3A+7998777666" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#25d366', fontWeight: '600' }}>+91 8478060606</a>
                   </span>
                 </div>
+              </div>
+
+              {/* Google Maps Embed */}
+              <div style={{
+                borderRadius: 'var(--border-radius-lg)',
+                overflow: 'hidden',
+                border: '1px solid var(--color-border-primary)',
+                boxShadow: 'var(--shadow-premium)',
+                height: '560px'
+              }}>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.426187571828!2d80.64465607460865!3d16.504568027637607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fb1531f3efc5%3A0xf99a9d5c3d3ccae6!2sKairavam!5e0!3m2!1sen!2sin!4v1782304600899!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, display: 'block' }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="Kairavam Clinic Location"
+                />
               </div>
             </div>
 

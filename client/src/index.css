@@ -3994,7 +3994,6 @@ select.form-control option {
   position: relative;
   width: 100%;
   max-width: 440px;
-  background: rgba(20, 37, 30, 0.88);
   border: 1px solid rgba(225, 207, 124, 0.3);
   backdrop-filter: blur(20px);
   border-radius: var(--border-radius-lg);
@@ -4235,4 +4234,153 @@ section[style*="background: var(--color-bg-main)"] * {
 /* Progress bar label text */
 .premium-progress-bar + * {
   color: var(--color-text-secondary);
+}
+
+/* Green background with dots animation (react-bits style) */
+@keyframes greenBgPulse {
+  0%   { background-color: #0f2e20; }
+  25%  { background-color: #1a4a35; }
+  50%  { background-color: #256d4b; }
+  75%  { background-color: #1a4a35; }
+  100% { background-color: #0f2e20; }
+}
+
+@keyframes dotsFloat {
+  0%   { background-position: 0 0, 0 0, 0 0; }
+  50%  { background-position: 30px 30px, -20px 40px, 10px -30px; }
+  100% { background-position: 0 0, 0 0, 0 0; }
+}
+
+.section-bg-green-anim,
+.offer-modal-card {
+  animation: greenBgPulse 8s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure content sits above dots overlay */
+.section-bg-green-anim .container,
+.section-bg-green-anim > div,
+.offer-modal-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dots overlay using pseudo-element */
+.section-bg-green-anim::before,
+.offer-modal-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20px 30px, rgba(255,255,255,0.12) 100%, transparent 0),
+    radial-gradient(1px 1px at 50px 80px, rgba(255,255,255,0.08) 100%, transparent 0),
+    radial-gradient(1.2px 1.2px at 80px 120px, rgba(255,255,255,0.1) 100%, transparent 0),
+    radial-gradient(1px 1px at 110px 50px, rgba(255,255,255,0.06) 100%, transparent 0),
+    radial-gradient(1.5px 1.5px at 140px 170px, rgba(255,255,255,0.1) 100%, transparent 0),
+    radial-gradient(1px 1px at 180px 20px, rgba(255,255,255,0.07) 100%, transparent 0),
+    radial-gradient(1.2px 1.2px at 210px 100px, rgba(255,255,255,0.09) 100%, transparent 0),
+    radial-gradient(1px 1px at 250px 60px, rgba(255,255,255,0.06) 100%, transparent 0),
+    radial-gradient(1.5px 1.5px at 280px 190px, rgba(255,255,255,0.11) 100%, transparent 0),
+    radial-gradient(1px 1px at 320px 140px, rgba(255,255,255,0.07) 100%, transparent 0);
+  background-size: 340px 220px;
+  animation: dotsFloat 12s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+/* Second dots layer for depth */
+.section-bg-green-anim::after,
+.offer-modal-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 40px 60px, rgba(182, 230, 180, 0.15) 100%, transparent 0),
+    radial-gradient(1.8px 1.8px at 100px 160px, rgba(182, 230, 180, 0.12) 100%, transparent 0),
+    radial-gradient(2.2px 2.2px at 170px 40px, rgba(182, 230, 180, 0.1) 100%, transparent 0),
+    radial-gradient(1.5px 1.5px at 240px 130px, rgba(182, 230, 180, 0.13) 100%, transparent 0),
+    radial-gradient(2px 2px at 300px 90px, rgba(182, 230, 180, 0.11) 100%, transparent 0);
+  background-size: 340px 220px;
+  animation: dotsFloat 16s ease-in-out infinite reverse;
+  opacity: 0.6;
+}
+
+/* Cards inside green sections get same animated bg */
+.section-bg-green-anim .luxury-spa-card,
+.section-bg-green-anim .tech-card-animate,
+.section-bg-green-anim .premium-card-highlight {
+  background: rgba(15, 46, 32, 0.5) !important;
+  backdrop-filter: blur(12px);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+/* All text white inside green sections */
+.section-bg-green-anim *,
+.offer-modal-card * {
+  color: #ffffff !important;
+}
+
+/* Make text more attractive */
+.section-bg-green-anim .section-title {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.section-bg-green-anim .section-subtitle {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+}
+.section-bg-green-anim .section-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+/* Buttons in green sections stand out */
+.section-bg-green-anim .btn-gold,
+.section-bg-green-anim .filter-tab {
+  background: rgba(255,255,255,0.12) !important;
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,0.25) !important;
+}
+.section-bg-green-anim .filter-tab.active {
+  background: #ffffff !important;
+  color: #0f2e20 !important;
+}
+.section-bg-green-anim .btn-gold:hover {
+  background: rgba(255,255,255,0.25) !important;
+}
+
+/* Badge/Verified styles in green sections */
+.section-bg-green-anim .badge-premium {
+  background: rgba(255,255,255,0.15) !important;
+  color: #ffffff !important;
+}
+.section-bg-green-anim .badge-verified {
+  color: #ffffff !important;
+}
+.section-bg-green-anim .badge-verified svg {
+  color: #ffffff !important;
+}
+
+/* Divider lines in green sections */
+.section-bg-green-anim div[style*="border-top"],
+.section-bg-green-anim div[style*="borderBottom"] {
+  border-color: rgba(255,255,255,0.15) !important;
+}
+
+/* Chart / progress / stat cards */
+.section-bg-green-anim .premium-progress-fill {
+  background: rgba(255,255,255,0.4) !important;
+}
+.section-bg-green-anim .stat-card {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.15) !important;
 }
