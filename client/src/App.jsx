@@ -943,7 +943,7 @@ function App() {
   }
 
   return (
-    <div className="landing-page-root" style={{ background: '#f7f3eb', minHeight: '100vh' }}>
+    <div className="landing-page-root" style={{ background: 'transparent', minHeight: '100vh' }}>
 
 
 
@@ -952,7 +952,7 @@ function App() {
         position: 'sticky',
         top: 0,
         zIndex: 90,
-        background: '#f7f3eb',
+        background: 'transparent',
         backdropFilter: 'blur(24px)',
         WebkitBackdropFilter: 'blur(24px)',
         borderBottom: '1px solid rgba(192, 157, 87, 0.30)',
@@ -3490,7 +3490,7 @@ function App() {
 
       {/* 14. FOOTER */}
       <footer style={{
-        background: '#f7f3eb',
+        background: 'transparent',
         borderTop: '3px solid var(--color-theme-primary)',
         padding: '60px 0 20px',
         color: 'var(--color-text-secondary)'

@@ -4,7 +4,7 @@
 
 :root {
   /* LIGHT THEME: White background, black text, gold-green cards */
-  --color-bg-main: #f7f3eb;
+  --color-bg-main: transparent;
   --color-bg-card: #f0f7f0;
   /* Light green card */
   --color-bg-card-hl: #e8f2e5;
@@ -62,14 +62,14 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #f7f3eb;
+  background-color: transparent;
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background: #f7f3eb;
+  background: transparent;
   color: #111111;
 }
 
