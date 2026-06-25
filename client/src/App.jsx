@@ -658,12 +658,12 @@ function App() {
       source: "Google Maps"
     },
     {
-      author: "Dr.Arshad Shaik",
+      author: "Arshad Shaik",
       avatar: null,
       stars: 5,
       role: "1 review · 3 photos",
       date: "10 months ago",
-      text: "Dr. Yamini and her team are highly professional. Had my Q-Switched Laser Toning done for uneven skin tone and pigmentation. Very much satisfied with the results and the professional approach. Must visit clinic for skin concerns.",
+      text: "Yamini and her team are highly professional. Had my Q-Switched Laser Toning done for uneven skin tone and pigmentation. Very much satisfied with the results and the professional approach. Must visit clinic for skin concerns.",
       services: ["Laser Toning", "Pigmentation Treatment"],
       source: "Google Maps"
     },
@@ -684,7 +684,7 @@ function App() {
       stars: 5,
       role: "4 reviews",
       date: "a year ago",
-      text: "Excellent experience at Kairavam Skin Clinic. Visited for my wife's acne scar treatment. We had a consultation with Dr. Yamini who mapped out a clear 4-session plan. We are already seeing great improvement in skin texture. Very professional and friendly staff.",
+      text: "Excellent experience at Kairavam Skin Clinic. Visited for my wife's acne scar treatment. We had a consultation with Yamini who mapped out a clear 4-session plan. We are already seeing great improvement in skin texture. Very professional and friendly staff.",
       services: ["Acne Scar Revision", "Skin Consultation"],
       source: "Google Maps"
     },
@@ -744,7 +744,7 @@ function App() {
       stars: 5,
       role: "2 reviews",
       date: "a year ago",
-      text: "Recently, I have undergone a Carbon Laser Peel service. It was done under the guidance of Dr. Yamini. The clinical suite is hygienic and the equipment is state-of-the-art. One of the premium skin clinics in Vijayawada.",
+      text: "Recently, I have undergone a Carbon Laser Peel service. It was done under the guidance of Yamini. The clinical suite is hygienic and the equipment is state-of-the-art. One of the premium skin clinics in Vijayawada.",
       services: ["Carbon Laser Peel"],
       source: "Google Maps"
     }
@@ -934,7 +934,7 @@ function App() {
         WebkitBackdropFilter: 'blur(24px)',
         borderBottom: '1px solid rgba(225, 207, 124, 0.30)',
         boxShadow: '0 4px 24px rgba(0,0,0,0.06), inset 0 -1px 0 rgba(225, 207, 124, 0.12)',
-        padding: '12px 0',
+        padding: '20px 0',
         transition: 'var(--transition-smooth)'
       }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative' }}>
@@ -950,7 +950,6 @@ function App() {
           {/* Navigation Links - Desktop */}
           <nav className="desktop-nav" style={{ gap: '26px' }}>
             <a href="#treatments" onClick={(e) => { e.preventDefault(); scrollToSection(treatmentsRef); }} style={{ fontSize: '13px', fontWeight: '600', textDecoration: 'none', color: '#222222' }} className="nav-link-hover">Treatments</a>
-            <a href="#doctor" onClick={(e) => { e.preventDefault(); scrollToSection(doctorRef); }} style={{ fontSize: '13px', fontWeight: '600', textDecoration: 'none', color: '#222222' }} className="nav-link-hover">Doctor</a>
             <a href="#before-after" style={{ fontSize: '13px', fontWeight: '600', textDecoration: 'none', color: '#222222' }} className="nav-link-hover">Before & After</a>
             <a href="#reviews" style={{ fontSize: '13px', fontWeight: '600', textDecoration: 'none', color: '#222222' }} className="nav-link-hover">Reviews</a>
             <a href="#faq" style={{ fontSize: '13px', fontWeight: '600', textDecoration: 'none', color: '#222222' }} className="nav-link-hover">FAQs</a>
@@ -1015,7 +1014,6 @@ function App() {
           }}>
             <nav style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <a href="#treatments" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); scrollToSection(treatmentsRef); }} style={{ fontSize: '15px', fontWeight: '600', textDecoration: 'none', color: 'var(--color-text-primary)' }}>Treatments</a>
-              <a href="#doctor" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); scrollToSection(doctorRef); }} style={{ fontSize: '15px', fontWeight: '600', textDecoration: 'none', color: 'var(--color-text-primary)' }}>Doctor</a>
               <a href="#before-after" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '15px', fontWeight: '600', textDecoration: 'none', color: 'var(--color-text-primary)' }}>Before & After</a>
               <a href="#reviews" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '15px', fontWeight: '600', textDecoration: 'none', color: 'var(--color-text-primary)' }}>Reviews</a>
               <a href="#faq" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '15px', fontWeight: '600', textDecoration: 'none', color: 'var(--color-text-primary)' }}>FAQs</a>
@@ -2789,7 +2787,7 @@ function App() {
               {/* Features list */}
               <div className="col" style={{ gap: '10px', fontSize: '12.5px', color: 'var(--color-text-secondary)' }}>
                 <div className="row" style={{ gap: '8px' }}><Check size={14} style={{ color: 'var(--color-theme-primary)' }} /> Combo Pico Laser + Skin Resurfacing</div>
-                <div className="row" style={{ gap: '8px' }}><Check size={14} style={{ color: 'var(--color-theme-primary)' }} /> Direct VIP Doctor WhatsApp Consultation Access</div>
+                <div className="row" style={{ gap: '8px' }}><Check size={14} style={{ color: 'var(--color-theme-primary)' }} /> Direct VIP WhatsApp Consultation Access</div>
                 <div className="row" style={{ gap: '8px' }}><Check size={14} style={{ color: 'var(--color-theme-primary)' }} /> Premium Dermocosmetics Take-Home Aftercare Kit</div>
                 <div className="row" style={{ gap: '8px' }}><Check size={14} style={{ color: 'var(--color-theme-primary)' }} /> Lifetime Beauty Progress Tracking & Reviews</div>
                 <div className="row" style={{ gap: '8px' }}><Check size={14} style={{ color: 'var(--color-theme-primary)' }} /> Unlimited Follow-up Checks for 6 Months</div>
